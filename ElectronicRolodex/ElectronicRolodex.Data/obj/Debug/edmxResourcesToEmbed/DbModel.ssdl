@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="dbModelStoreContainer">
+    <EntitySet Name="Address" EntityType="dbModel.Store.Address" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AddressType" EntityType="dbModel.Store.AddressType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ContactType" EntityType="dbModel.Store.ContactType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Country" EntityType="dbModel.Store.Country" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Phone" EntityType="dbModel.Store.Phone" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PhoneType" EntityType="dbModel.Store.PhoneType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="State" EntityType="dbModel.Store.State" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User" EntityType="dbModel.Store.User" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserContacts" EntityType="dbModel.Store.UserContacts" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK__Address__Address__1FCDBCEB" Association="dbModel.Store.FK__Address__Address__1FCDBCEB">
+      <End Role="AddressType" EntitySet="AddressType" />
+      <End Role="Address" EntitySet="Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Address__Country__1ED998B2" Association="dbModel.Store.FK__Address__Country__1ED998B2">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Address" EntitySet="Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Address__State_I__1DE57479" Association="dbModel.Store.FK__Address__State_I__1DE57479">
+      <End Role="State" EntitySet="State" />
+      <End Role="Address" EntitySet="Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Phone__PhoneType__117F9D94" Association="dbModel.Store.FK__Phone__PhoneType__117F9D94">
+      <End Role="PhoneType" EntitySet="PhoneType" />
+      <End Role="Phone" EntitySet="Phone" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserConta__conta__2F10007B" Association="dbModel.Store.FK__UserConta__conta__2F10007B">
+      <End Role="ContactType" EntitySet="ContactType" />
+      <End Role="UserContacts" EntitySet="UserContacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserConta__User___2E1BDC42" Association="dbModel.Store.FK__UserConta__User___2E1BDC42">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserContacts" EntitySet="UserContacts" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="HouseNumber" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="Street" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="ApartmentNumber" Type="varchar" MaxLength="15" />
+    <Property Name="City" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="Zipcode" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="State_Id" Type="int" Nullable="false" />
+    <Property Name="Country_Id" Type="int" Nullable="false" />
+    <Property Name="AddressType_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AddressType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TypeName" Type="varchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="ContactType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TypeName" Type="varchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TypeName" Type="varchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Phone">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Number" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="PhoneType_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PhoneType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TypeName" Type="varchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="ShortForm" Type="varchar" Nullable="false" MaxLength="2" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="UserContacts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="User_Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Contact_Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="contactType_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Address__Address__1FCDBCEB">
+    <End Role="AddressType" Type="dbModel.Store.AddressType" Multiplicity="1" />
+    <End Role="Address" Type="dbModel.Store.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AddressType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="AddressType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Address__Country__1ED998B2">
+    <End Role="Country" Type="dbModel.Store.Country" Multiplicity="1" />
+    <End Role="Address" Type="dbModel.Store.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="Country_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Address__State_I__1DE57479">
+    <End Role="State" Type="dbModel.Store.State" Multiplicity="1" />
+    <End Role="Address" Type="dbModel.Store.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="State_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Phone__PhoneType__117F9D94">
+    <End Role="PhoneType" Type="dbModel.Store.PhoneType" Multiplicity="1" />
+    <End Role="Phone" Type="dbModel.Store.Phone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhoneType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Phone">
+        <PropertyRef Name="PhoneType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserConta__conta__2F10007B">
+    <End Role="ContactType" Type="dbModel.Store.ContactType" Multiplicity="1" />
+    <End Role="UserContacts" Type="dbModel.Store.UserContacts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContactType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserContacts">
+        <PropertyRef Name="contactType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserConta__User___2E1BDC42">
+    <End Role="User" Type="dbModel.Store.User" Multiplicity="1" />
+    <End Role="UserContacts" Type="dbModel.Store.UserContacts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserContacts">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

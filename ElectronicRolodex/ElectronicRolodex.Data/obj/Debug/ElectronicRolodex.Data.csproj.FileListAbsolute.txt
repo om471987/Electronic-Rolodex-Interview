@@ -1,0 +1,2 @@
+C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Data\bin\Debug\ElectronicRolodex.Data.exe.config
+C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Data\obj\Debug\ElectronicRolodex.Data.csprojResolveAssemblyReference.cache
