@@ -1,0 +1,13 @@
+﻿<Window x:Class="ElectronicRolodex.Desktop.NewUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="NewUser" WindowState="Maximized">
+    <Grid Name="NewUserGrid">
+      <Label Content="First Name" HorizontalAlignment="Left" Height="23" Margin="81,66,0,0" VerticalAlignment="Top" Width="120"/>
+      <TextBox Name="First" HorizontalAlignment="Left" Height="23" Margin="298,66,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+
+      <Label Content="Last Name" HorizontalAlignment="Left" Height="23" Margin="81,119,0,0" VerticalAlignment="Top" Width="120"/>
+      <TextBox Name="Last" HorizontalAlignment="Left" Height="23" Margin="298,119,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+      <Button Content="Submit" HorizontalAlignment="Left" Margin="436,224,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+   </Grid>
+</Window>
