@@ -1,18 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using ElectronicRolodex.Data;
 
 namespace ElectronicRolodex.Desktop
@@ -27,7 +14,7 @@ namespace ElectronicRolodex.Desktop
             InitializeComponent();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void NewUserClick(object sender, RoutedEventArgs e)
         {
             if (First.Text != "" && Last.Text != "")
             {
@@ -40,11 +27,13 @@ namespace ElectronicRolodex.Desktop
                 var db = new dbEntities();
                 db.Users.Add(user);
                 db.SaveChanges();
-                MessageBox.Show("User" + First.Text + " " + First.Text + " is saved.");
-
-                var userList = new UserList();
-                userList.Show();
                 Close();
+                MessageBox.Show("User" + First.Text + " " + First.Text + " is saved.");
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Error");
             }
         }
     }

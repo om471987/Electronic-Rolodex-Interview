@@ -19,5 +19,14 @@ C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRo
 C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\obj\Debug\ElectronicRolodex.Desktop.pdb
 C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\obj\Debug\NewUser.baml
 C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\obj\Debug\NewUser.g.cs
-C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\obj\Debug\ViewUser.baml
-C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\obj\Debug\ViewUser.g.cs
+C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\bin\Debug\Microsoft.Practices.Unity.dll
+C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\bin\Debug\Microsoft.Practices.Unity.xml
+C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\obj\Debug\NewAddress.baml
+C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\obj\Debug\NewPhone.baml
+C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\obj\Debug\NewAddress.g.cs
+C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\obj\Debug\NewPhone.g.cs

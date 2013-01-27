@@ -78,6 +78,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DbModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="IDataSource.cs" />
     <Compile Include="Phone.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
