@@ -128,6 +128,7 @@
     <Property Type="Guid" Name="Id" Nullable="false" />
     <Property Type="Guid" Name="User_Id" Nullable="false" />
     <Property Type="Int32" Name="contactType_Id" Nullable="false" />
+    <Property Type="Guid" Name="Contact_Id" Nullable="false" />
     <NavigationProperty Name="ContactType" Relationship="dbModel.FK__UserConta__conta__2F10007B" FromRole="UserContact" ToRole="ContactType" />
     <NavigationProperty Name="User" Relationship="dbModel.FK__UserConta__User___2E1BDC42" FromRole="UserContact" ToRole="User" />
   </EntityType>

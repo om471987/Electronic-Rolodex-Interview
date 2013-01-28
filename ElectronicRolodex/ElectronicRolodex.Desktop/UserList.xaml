@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="UserList" WindowState="Maximized">
    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-      <FlowDocumentReader UseLayoutRounding="True" SnapsToDevicePixels="True" Width="600" Height="400">
+      <FlowDocumentReader UseLayoutRounding="True" SnapsToDevicePixels="True" ViewingMode="Scroll"  IsPageViewEnabled="False" IsTwoPageViewEnabled="False">
          <FlowDocumentReader.Resources>
             <Style TargetType="TableCell">
                <Setter Property="TextAlignment" Value="Center"/>
@@ -14,12 +14,9 @@
                <Table.Columns>
                   <TableColumn Width="100"/>
                   <TableColumn Width="200"/>
-                  <TableColumn Width="200"/>
-                  <TableColumn Width="200"/>
-                  <TableColumn Width="200"/>
-                  <TableColumn Width="200"/>
-                  <TableColumn Width="200"/>
-                  <TableColumn Width="200"/>
+                  <TableColumn Width="250"/>
+                  <TableColumn Width="250"/>
+                  <TableColumn Width="250"/>
                </Table.Columns>
                <TableRowGroup Name="UserTable">
                   <TableRow>
@@ -31,28 +28,24 @@
                      </TableCell>
                      <TableCell BorderBrush="Black" 
                                 BorderThickness="0,1,1,1">
-                        <Paragraph>First Name</Paragraph>
+                        <Paragraph>Name</Paragraph>
                      </TableCell>
                      <TableCell BorderBrush="Black" 
                                 BorderThickness="0,1,1,1">
-                        <Paragraph >Last Name</Paragraph>
+                        <Paragraph >Work Phone Number</Paragraph>
                      </TableCell>
                      <TableCell BorderBrush="Black" 
                                 BorderThickness="0,1,1,1">
-                        <Paragraph >Office Phone</Paragraph>
+                        <Paragraph >Home Phone Number</Paragraph>
                      </TableCell>
                      <TableCell BorderBrush="Black" 
                                 BorderThickness="0,1,1,1">
-                        <Paragraph >Home Phone</Paragraph>
+                        <Paragraph >City</Paragraph>
                      </TableCell>
                      <TableCell BorderBrush="Black" 
                                 BorderThickness="0,1,1,1">
-                        <Paragraph >Office Address</Paragraph>
+                        <Paragraph >State</Paragraph>
                      </TableCell>
-                     <TableCell BorderBrush="Black" 
-                                BorderThickness="0,1,1,1">
-                        <Paragraph >Home Address</Paragraph>
-                     </TableCell>                     
                   </TableRow>
                </TableRowGroup>
             </Table>

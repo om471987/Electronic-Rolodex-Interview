@@ -10,23 +10,22 @@ namespace ElectronicRolodex.Desktop
     /// <summary>
     /// Interaction logic for NewAddress.xaml
     /// </summary>
-    public partial class NewAddress : Window
+    public partial class NewAddress
     {
-        public NewAddress()
+        private readonly Guid _user;
+
+        public NewAddress(Guid user)
         {
+            _user = user;
             InitializeComponent();
             var db = new dbEntities();
 
             var countries = db.Countries.ToList();
             Country.ItemsSource = countries;
-
-            var type = db.AddressTypes.ToList();
-            AddressType.ItemsSource = type;
         }
 
         private void AddNewAddressClick(object sender, RoutedEventArgs e)
         {
-            var addressType = AddressType.SelectedItem as AddressType;
             var state = State.SelectedItem as State;
             var country = Country.SelectedItem as Country;
             int intout;
@@ -42,7 +41,7 @@ namespace ElectronicRolodex.Desktop
                 var address = new Address
                 {
                     Id = Guid.NewGuid(),
-                    AddressType_Id = addressType.Id,
+                    AddressType_Id = (int) AddressCollection.Home,
                     HouseNumber =  int.Parse(HouseNumber.Text),
                     Street = StreetName.Text,
                     ApartmentNumber = AptOfficeRoom.Text,
@@ -56,14 +55,15 @@ namespace ElectronicRolodex.Desktop
 
                 var userContacts = new UserContact
                     {
-                        User_Id = Guid.NewGuid(),
-                        contactType_Id = 2
+                        Id = Guid.NewGuid(),
+                        User_Id = _user,
+                        contactType_Id = (int) ContactCollection.Address,
+                        Contact_Id = address.Id
                     };
                 db.UserContacts.Add(userContacts);
-                //db.SaveChanges();
+                db.SaveChanges();
 
-                var message = new StringBuilder(AddressType.Text);
-                message.Append("  address, ");
+                var message = new StringBuilder("Address, ");
                 message.Append(HouseNumber.Text);
                 message.Append(", ");
                 message.Append(StreetName.Text);
@@ -81,6 +81,10 @@ namespace ElectronicRolodex.Desktop
                 message.Append(ZipCode.Text);
                 message.Append(" address is saved.");
                 MessageBox.Show(message.ToString());
+                
+
+                var userList = new UserList();
+                userList.Show();
                 Close();
             }
         }
@@ -92,6 +96,15 @@ namespace ElectronicRolodex.Desktop
             var states = db.States.Where(t => t.Country_Id == country.Id).OrderBy(t => t.Name).ToList();
             State.ItemsSource = states;
             State.SelectedIndex = 0;
+        }
+
+        private void BackToListClick(object sender, RoutedEventArgs e)
+        {
+            
+
+            var userList = new UserList();
+            userList.Show();
+            Close();
         }
     }
 }

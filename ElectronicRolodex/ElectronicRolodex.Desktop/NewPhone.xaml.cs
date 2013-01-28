@@ -11,24 +11,25 @@ namespace ElectronicRolodex.Desktop
     /// </summary>
     public partial class NewPhone
     {
-        public NewPhone()
+        private readonly Guid _user;
+        private readonly int _phoneType;
+
+        public NewPhone(Guid user, PhoneCollection phoneType)
         {
+            _user = user;
+            _phoneType = (int) phoneType;
             InitializeComponent();
-            var db = new dbEntities();
-            var type = db.PhoneTypes.ToList();
-            PhoneType.ItemsSource = type;
         }
 
         private void AddNewPhoneClick(object sender, RoutedEventArgs e)
         {
             int intout;
-            var phoneType = (PhoneType.SelectedItem as PhoneType).Id;
             if (AreaCode.Text.Length < 3 || MiddleNumber.Text.Length < 3 || LastNumber.Text.Length < 4 ||
                 !int.TryParse(AreaCode.Text, out intout) || !int.TryParse(MiddleNumber.Text, out intout) || !int.TryParse(LastNumber.Text, out intout))
             {
                 ErrorLabel.Content = "Please enter correct phone number.";
             }
-            else if (phoneType == 1 && (AreaCode.Text.Length < 1 || !int.TryParse(ExtensionNumber.Text, out intout)))
+            else if (_phoneType == 1 && (AreaCode.Text.Length < 1 || !int.TryParse(ExtensionNumber.Text, out intout)))
             {
                 ErrorLabel.Content = "Please enter correct extension.";
             }
@@ -37,54 +38,49 @@ namespace ElectronicRolodex.Desktop
                 var phone = new Phone
                     {
                         Id = Guid.NewGuid(),
-                        PhoneType_Id = phoneType,
+                        PhoneType_Id = _phoneType,
                         AreaCode = int.Parse(AreaCode.Text),
                         Middle = int.Parse(MiddleNumber.Text),
                         Last = int.Parse(LastNumber.Text),
-                        Extension = phoneType == 1 ? int.Parse(ExtensionNumber.Text) : 0
+                        Extension = _phoneType == 1 ? int.Parse(ExtensionNumber.Text) : 0
                     };
                 var db = new dbEntities();
                 db.Phones.Add(phone);
 
                 var userContacts = new UserContact
                 {
-                    User_Id = Guid.NewGuid(),
-                    contactType_Id = 1
+                    Id = Guid.NewGuid(),
+                    User_Id = _user,
+                    contactType_Id = (int) ContactCollection.Phone,
+                    Contact_Id = phone.Id
                 };
                 db.UserContacts.Add(userContacts);
 
-                //db.SaveChanges();
+                db.SaveChanges();
 
-                var message = new StringBuilder(PhoneType.Text);
-                message.Append(" Phone ");
+                var message = new StringBuilder("Phone ");
                 message.Append(AreaCode.Text);
                 message.Append("-");
                 message.Append(MiddleNumber.Text);
                 message.Append("-");
                 message.Append(LastNumber.Text);
-                message.Append((phoneType == 1 ? " Ex." + ExtensionNumber.Text : ""));
+                message.Append((_phoneType == 1 ? " Ex." + ExtensionNumber.Text : ""));
                 message.Append(" is saved.");
 
                 MessageBox.Show(message.ToString());
+                
+
+                var userList = new UserList();
+                userList.Show();
                 Close();
             }
         }
 
-        private void ToggleExtension(object sender, RoutedEventArgs e)
+        private void BackToListClick(object sender, RoutedEventArgs e)
         {
-            var phoneType = PhoneType.SelectedItem as PhoneType;
-            if (phoneType.Id == 1) //office phone
-            {
-                ExtensionNumber.Visibility = Visibility.Visible;
-                ExtensionLabel.Visibility = Visibility.Visible;
-                ExtensionNumber.Text = "";
-            }
-            else
-            {
-                ExtensionNumber.Visibility = Visibility.Hidden;
-                ExtensionLabel.Visibility = Visibility.Hidden;
-                ExtensionNumber.Text = "";
-            }
+            var userList = new UserList();
+            userList.Show();
+            Close();
         }
     }
 }

@@ -121,6 +121,7 @@
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="User_Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="contactType_Id" Type="int" Nullable="false" />
+          <Property Name="Contact_Id" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <Association Name="FK__Address__Address__1FCDBCEB">
           <End Role="AddressType" Type="dbModel.Store.AddressType" Multiplicity="1" />
@@ -338,6 +339,7 @@
           <Property Type="Guid" Name="Id" Nullable="false" />
           <Property Type="Guid" Name="User_Id" Nullable="false" />
           <Property Type="Int32" Name="contactType_Id" Nullable="false" />
+          <Property Type="Guid" Name="Contact_Id" Nullable="false" />
           <NavigationProperty Name="ContactType" Relationship="dbModel.FK__UserConta__conta__2F10007B" FromRole="UserContact" ToRole="ContactType" />
           <NavigationProperty Name="User" Relationship="dbModel.FK__UserConta__User___2E1BDC42" FromRole="UserContact" ToRole="User" />
         </EntityType>
@@ -512,6 +514,7 @@
           <EntitySetMapping Name="UserContacts">
             <EntityTypeMapping TypeName="dbModel.UserContact">
               <MappingFragment StoreEntitySet="UserContacts">
+                <ScalarProperty Name="Contact_Id" ColumnName="Contact_Id" />
                 <ScalarProperty Name="contactType_Id" ColumnName="contactType_Id" />
                 <ScalarProperty Name="User_Id" ColumnName="User_Id" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

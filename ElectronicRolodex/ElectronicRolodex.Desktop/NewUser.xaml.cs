@@ -15,7 +15,7 @@ namespace ElectronicRolodex.Desktop
             InitializeComponent();
         }
 
-        private void NewUserClick(object sender, RoutedEventArgs e)
+        private void AddNewAddressClick(object sender, RoutedEventArgs e)
         {
             if (First.Text == "" || Last.Text == "" || !Regex.Match(First.Text, @"^[a-zA-Z]+$").Success || !Regex.Match(Last.Text, @"^[a-zA-Z]+$").Success)
             {
@@ -32,9 +32,22 @@ namespace ElectronicRolodex.Desktop
                 var db = new dbEntities();
                 db.Users.Add(user);
                 db.SaveChanges();
-                MessageBox.Show("User" + First.Text + " " + First.Text + " is saved.");
+                MessageBox.Show("User " + First.Text + " " + Last.Text + " is saved.");
+                
+
+                var userList = new UserList();
+                userList.Show();
                 Close();
             }
+        }
+
+        private void BackToListClick(object sender, RoutedEventArgs e)
+        {
+            
+
+            var userList = new UserList();
+            userList.Show();
+            Close();
         }
     }
 }

@@ -5,4 +5,3 @@ C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRo
 C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Data\bin\Debug\EntityFramework.xml
 C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Data\obj\Debug\ElectronicRolodex.Data.dll
 C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Data\obj\Debug\ElectronicRolodex.Data.pdb
-C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Data\obj\Debug\ElectronicRolodex.Data.csprojResolveAssemblyReference.cache

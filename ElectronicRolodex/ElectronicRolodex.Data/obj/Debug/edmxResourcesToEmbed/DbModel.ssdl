@@ -116,6 +116,7 @@
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="User_Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="contactType_Id" Type="int" Nullable="false" />
+    <Property Name="Contact_Id" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <Association Name="FK__Address__Address__1FCDBCEB">
     <End Role="AddressType" Type="dbModel.Store.AddressType" Multiplicity="1" />
