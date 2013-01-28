@@ -15,11 +15,11 @@ namespace ElectronicRolodex.Data
     public partial class Phone
     {
         public System.Guid Id { get; set; }
-        public int PhoneType_Id { get; set; }
         public int AreaCode { get; set; }
         public int Middle { get; set; }
         public int Last { get; set; }
         public Nullable<int> Extension { get; set; }
+        public int PhoneType_Id { get; set; }
     
         public virtual PhoneType PhoneType { get; set; }
     }

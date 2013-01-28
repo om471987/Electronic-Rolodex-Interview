@@ -44,11 +44,11 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Type="Guid" Name="Id" Nullable="false" />
-    <Property Type="String" Name="HouseNumber" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="Street" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="ApartmentNumber" MaxLength="15" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="City" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="Zipcode" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="HouseNumber" Nullable="false" />
+    <Property Type="String" Name="Street" Nullable="false" MaxLength="24" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ApartmentNumber" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="City" Nullable="false" MaxLength="24" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="Zipcode" Nullable="false" />
     <Property Type="Int32" Name="State_Id" Nullable="false" />
     <Property Type="Int32" Name="Country_Id" Nullable="false" />
     <Property Type="Int32" Name="AddressType_Id" Nullable="false" />
@@ -86,12 +86,12 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Type="Guid" Name="Id" Nullable="false" />
-    <Property Type="Int32" Name="PhoneType_Id" Nullable="false" />
-    <NavigationProperty Name="PhoneType" Relationship="dbModel.FK__Phone__PhoneType__117F9D94" FromRole="Phone" ToRole="PhoneType" />
     <Property Type="Int32" Name="AreaCode" Nullable="false" />
     <Property Type="Int32" Name="Middle" Nullable="false" />
     <Property Type="Int32" Name="Last" Nullable="false" />
     <Property Type="Int32" Name="Extension" />
+    <Property Type="Int32" Name="PhoneType_Id" Nullable="false" />
+    <NavigationProperty Name="PhoneType" Relationship="dbModel.FK__Phone__PhoneType__117F9D94" FromRole="Phone" ToRole="PhoneType" />
   </EntityType>
   <EntityType Name="PhoneType">
     <Key>

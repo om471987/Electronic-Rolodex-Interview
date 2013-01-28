@@ -43,11 +43,11 @@
     <EntitySetMapping Name="Phones">
       <EntityTypeMapping TypeName="dbModel.Phone">
         <MappingFragment StoreEntitySet="Phone">
+          <ScalarProperty Name="PhoneType_Id" ColumnName="PhoneType_Id" />
           <ScalarProperty Name="Extension" ColumnName="Extension" />
           <ScalarProperty Name="Last" ColumnName="Last" />
           <ScalarProperty Name="Middle" ColumnName="Middle" />
           <ScalarProperty Name="AreaCode" ColumnName="AreaCode" />
-          <ScalarProperty Name="PhoneType_Id" ColumnName="PhoneType_Id" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

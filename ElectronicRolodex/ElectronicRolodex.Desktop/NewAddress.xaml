@@ -7,17 +7,17 @@
       <ComboBox Margin="179,21,0,0" Name="AddressType" HorizontalAlignment="Left" VerticalAlignment="Top" Width="189" Height="30" ItemsSource="{Binding}" DisplayMemberPath="TypeName" SelectedIndex="0"/>
        
       <Label Content="House Number" HorizontalAlignment="Left" Height="30" Margin="39,66,0,0" VerticalAlignment="Top" Width="120"/>
-      <TextBox Name="HouseNumber" HorizontalAlignment="Left" Height="30" Margin="179,66,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="189"/>
-
+      <TextBox Name="HouseNumber" HorizontalAlignment="Left" Height="30" Margin="179,66,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="189" MaxLength="6"/>
+       
       <Label Content="Street Name" HorizontalAlignment="Left" Height="30" Margin="39,104,0,0" VerticalAlignment="Top" Width="120"/>
-      <TextBox Name="StreetName" HorizontalAlignment="Left" Height="30" Margin="179,104,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="189"/>
+      <TextBox Name="StreetName" HorizontalAlignment="Left" Height="30" Margin="179,104,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="189" MaxLength="24"/>
 
-      <Label Content="Apt /Office /Room" HorizontalAlignment="Left" Height="30" Margin="39,142,0,0" VerticalAlignment="Top" Width="120"/>
-      <TextBox Name="AptOfficeRoom" HorizontalAlignment="Left" Height="30" Margin="179,142,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="189"/>
+      <Label Content="Apt/Office (Optional)" HorizontalAlignment="Left" Height="30" Margin="39,142,0,0" VerticalAlignment="Top" Width="125"/>
+      <TextBox Name="AptOfficeRoom" HorizontalAlignment="Left" Height="30" Margin="179,142,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="189"  MaxLength="4"/>
 
       <Label Content="City" HorizontalAlignment="Left" Height="30" Margin="39,184,0,0" VerticalAlignment="Top" Width="120"/>
-      <TextBox Name="City" HorizontalAlignment="Left" Height="30" Margin="179,184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="189"/>
-
+      <TextBox Name="City" HorizontalAlignment="Left" Height="30" Margin="179,184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="189" MaxLength="24"/>
+       
       <Label Content="State" HorizontalAlignment="Left" Height="30" Margin="39,219,0,0" VerticalAlignment="Top" Width="120"/>
       <ComboBox Margin="179,231,0,0" Name="State" HorizontalAlignment="Left" VerticalAlignment="Top" Width="189" Height="30" ItemsSource="{Binding}" DisplayMemberPath="Name" SelectedIndex="0"/>
 
@@ -26,7 +26,10 @@
       <ComboBox Margin="179,269,0,0" Name="Country" HorizontalAlignment="Left" VerticalAlignment="Top" Width="189" Height="30" ItemsSource="{Binding}" DisplayMemberPath="Name" SelectionChanged="UpdateStates" SelectedIndex="0"/>
 
       <Label Content="ZipCode" HorizontalAlignment="Left" Height="30" Margin="39,304,0,0" VerticalAlignment="Top" Width="120"/>
-      <TextBox Name="ZipCode" HorizontalAlignment="Left" Height="30" Margin="179,313,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="189"/>
-      <Button Content="Submit" HorizontalAlignment="Left" Margin="347,397,0,0" VerticalAlignment="Top" Width="75" Click="AddNewAddressClick"/>
+      <TextBox Name="ZipCode" HorizontalAlignment="Left" MaxLength="5"  Height="30" Margin="179,313,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="189"/>
+
+      <Label Name="ErrorLabel" Content="" Foreground="Red" HorizontalAlignment="Left" Height="30" Margin="15,362,0,0" VerticalAlignment="Top" Width="442"/>
+       
+      <Button Content="Submit" HorizontalAlignment="Left" Margin="358,414,0,0" VerticalAlignment="Top" Width="75" Click="AddNewAddressClick"/>
    </Grid>
 </Window>

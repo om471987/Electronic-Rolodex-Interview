@@ -4,16 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="78c7c62b265d4124b4bc37f29f119030" Name="Diagram1">
-        <EntityTypeShape EntityType="dbModel.Address" Width="1.5" PointX="6.4796737518532543" PointY="15.350324712391164" />
-        <EntityTypeShape EntityType="dbModel.AddressType" Width="1.5" PointX="11.685893839078906" PointY="12.376044457953444" />
-        <EntityTypeShape EntityType="dbModel.ContactType" Width="1.5" PointX="6.6376598806295819" PointY="4.6845324508308117" />
-        <EntityTypeShape EntityType="dbModel.Country" Width="1.5" PointX="0.89896017727393662" PointY="14.358267656694292" />
-        <EntityTypeShape EntityType="dbModel.Phone" Width="1.5" PointX="8.625" PointY="1.875" />
-        <EntityTypeShape EntityType="dbModel.PhoneType" Width="1.5" PointX="0.93066202147428978" PointY="3.0099604739853927" />
-        <EntityTypeShape EntityType="dbModel.State" Width="1.5" PointX="11.268615133719806" PointY="11.60854545776199" />
-        <EntityTypeShape EntityType="dbModel.User" Width="1.5" PointX="2.7117266537210565" PointY="10.442636882161088" />
-        <EntityTypeShape EntityType="dbModel.UserContact" Width="1.5" PointX="0.086334189440279346" PointY="18.930793994539787" />
+      <Diagram DiagramId="78c7c62b265d4124b4bc37f29f119030" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="dbModel.Address" Width="1.5" PointX="7.10749111282988" PointY="3.1759910747297067" />
+        <EntityTypeShape EntityType="dbModel.AddressType" Width="1.5" PointX="11.428863946082473" PointY="15.339973486652585" />
+        <EntityTypeShape EntityType="dbModel.ContactType" Width="1.5" PointX="7.1651172894822048" PointY="12.415241247236375" />
+        <EntityTypeShape EntityType="dbModel.Country" Width="1.5" PointX="6.3521646030024455" PointY="16.135805837873278" />
+        <EntityTypeShape EntityType="dbModel.Phone" Width="1.5" PointX="2.8905775187958858" PointY="12.63493636838856" />
+        <EntityTypeShape EntityType="dbModel.PhoneType" Width="1.5" PointX="4.3115331662406833" PointY="16.956292905358733" />
+        <EntityTypeShape EntityType="dbModel.State" Width="1.5" PointX="0.61353068641085673" PointY="7.5543412452351024" />
+        <EntityTypeShape EntityType="dbModel.User" Width="1.5" PointX="4.3148453199839425" PointY="9.2066116375879439" />
+        <EntityTypeShape EntityType="dbModel.UserContact" Width="1.5" PointX="5.5535923734091188" PointY="9.9410561965503987" />
         <AssociationConnector Association="dbModel.FK__Address__Address__1FCDBCEB" />
         <AssociationConnector Association="dbModel.FK__Address__Country__1ED998B2" />
         <AssociationConnector Association="dbModel.FK__Address__State_I__1DE57479" />

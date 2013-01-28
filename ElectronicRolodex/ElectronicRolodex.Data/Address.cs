@@ -15,11 +15,11 @@ namespace ElectronicRolodex.Data
     public partial class Address
     {
         public System.Guid Id { get; set; }
-        public string HouseNumber { get; set; }
+        public int HouseNumber { get; set; }
         public string Street { get; set; }
         public string ApartmentNumber { get; set; }
         public string City { get; set; }
-        public string Zipcode { get; set; }
+        public int Zipcode { get; set; }
         public int State_Id { get; set; }
         public int Country_Id { get; set; }
         public int AddressType_Id { get; set; }

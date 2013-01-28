@@ -44,11 +44,11 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="HouseNumber" Type="varchar" Nullable="false" MaxLength="255" />
-    <Property Name="Street" Type="varchar" Nullable="false" MaxLength="255" />
-    <Property Name="ApartmentNumber" Type="varchar" MaxLength="15" />
-    <Property Name="City" Type="varchar" Nullable="false" MaxLength="255" />
-    <Property Name="Zipcode" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="HouseNumber" Type="int" Nullable="false" />
+    <Property Name="Street" Type="varchar" Nullable="false" MaxLength="24" />
+    <Property Name="ApartmentNumber" Type="varchar" MaxLength="4" />
+    <Property Name="City" Type="varchar" Nullable="false" MaxLength="24" />
+    <Property Name="Zipcode" Type="int" Nullable="false" />
     <Property Name="State_Id" Type="int" Nullable="false" />
     <Property Name="Country_Id" Type="int" Nullable="false" />
     <Property Name="AddressType_Id" Type="int" Nullable="false" />

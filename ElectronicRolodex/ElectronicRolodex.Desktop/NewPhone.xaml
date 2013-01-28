@@ -8,13 +8,12 @@
                 SelectionChanged="ToggleExtension"/>
 
       <Label Content="Number" HorizontalAlignment="Left" Height="30" Margin="15,67,0,0" VerticalAlignment="Top" Width="120"/>
-      <Label Content="*" Foreground="Red" Margin="135,67,218,142" Width="15" Height="20"/>
        
       <TextBox Name="AreaCode" HorizontalAlignment="Left" Height="30" Margin="155,67,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="47" MaxLength="3"/>
       <TextBox Name="MiddleNumber" HorizontalAlignment="Left" Height="30" Margin="216,67,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="50" MaxLength="3"/>
       <TextBox Name="LastNumber" HorizontalAlignment="Left" Height="30" Margin="285,67,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="59" MaxLength="4"/>
 
-      <Label Name="ExtensionLabel" Content="Extension" Visibility="Hidden" HorizontalAlignment="Left" Height="30" Margin="205,115,0,0" VerticalAlignment="Top" Width="61"/>
+      <Label Name="ExtensionLabel" Content="Extension (Optional)" Visibility="Hidden" HorizontalAlignment="Left" Height="30" Margin="205,115,0,0" VerticalAlignment="Top" Width="61"/>
       <TextBox Name="ExtensionNumber" Visibility="Hidden" HorizontalAlignment="Left" Height="30" Margin="285,115,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="59" MaxLength="4"/>
 
       <Label Name="ErrorLabel" Content="" Foreground="Red" HorizontalAlignment="Left" Height="30" Margin="15,161,0,0" VerticalAlignment="Top" Width="329"/>
