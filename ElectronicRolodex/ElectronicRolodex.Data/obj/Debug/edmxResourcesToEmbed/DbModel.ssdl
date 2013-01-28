@@ -26,6 +26,10 @@
       <End Role="PhoneType" EntitySet="PhoneType" />
       <End Role="Phone" EntitySet="Phone" />
     </AssociationSet>
+    <AssociationSet Name="FK__State__Country_I__300424B4" Association="dbModel.Store.FK__State__Country_I__300424B4">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="State" EntitySet="State" />
+    </AssociationSet>
     <AssociationSet Name="FK__UserConta__conta__2F10007B" Association="dbModel.Store.FK__UserConta__conta__2F10007B">
       <End Role="ContactType" EntitySet="ContactType" />
       <End Role="UserContacts" EntitySet="UserContacts" />
@@ -68,14 +72,17 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="TypeName" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
   </EntityType>
   <EntityType Name="Phone">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="Number" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="AreaCode" Type="int" Nullable="false" />
+    <Property Name="Middle" Type="int" Nullable="false" />
+    <Property Name="Last" Type="int" Nullable="false" />
+    <Property Name="Extension" Type="int" />
     <Property Name="PhoneType_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="PhoneType">
@@ -92,6 +99,7 @@
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
     <Property Name="ShortForm" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="Country_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -155,6 +163,18 @@
       </Principal>
       <Dependent Role="Phone">
         <PropertyRef Name="PhoneType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__State__Country_I__300424B4">
+    <End Role="Country" Type="dbModel.Store.Country" Multiplicity="1" />
+    <End Role="State" Type="dbModel.Store.State" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="State">
+        <PropertyRef Name="Country_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

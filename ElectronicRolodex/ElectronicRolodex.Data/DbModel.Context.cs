@@ -6,7 +6,6 @@
 //    Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using System.Linq;
 
 namespace ElectronicRolodex.Data
 {
@@ -14,7 +13,7 @@ namespace ElectronicRolodex.Data
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class dbEntities : DbContext, IDataSource
+    public partial class dbEntities : DbContext
     {
         public dbEntities()
             : base("name=dbEntities")
@@ -35,113 +34,5 @@ namespace ElectronicRolodex.Data
         public DbSet<State> States { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserContact> UserContacts { get; set; }
-
-        IQueryable<Address> IDataSource.Addresses
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        IQueryable<AddressType> IDataSource.AddressTypes
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        IQueryable<ContactType> IDataSource.ContactTypes
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        IQueryable<Country> IDataSource.Countries
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        IQueryable<Phone> IDataSource.Phones
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        IQueryable<PhoneType> IDataSource.PhoneTypes
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        IQueryable<State> IDataSource.States
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        IQueryable<User> IDataSource.Users
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        IQueryable<UserContact> IDataSource.UserContacts
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
     }
 }

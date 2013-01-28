@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ElectronicRolodex.Data;
 
 namespace ElectronicRolodex.Desktop
 {
@@ -22,29 +23,52 @@ namespace ElectronicRolodex.Desktop
         public NewAddress()
         {
             InitializeComponent();
+            var db = new dbEntities();
+
+            var countries = db.Countries.ToList();
+            Country.ItemsSource = countries;
+
+            var type = db.AddressTypes.ToList();
+            AddressType.ItemsSource = type;
         }
 
         private void AddNewAddressClick(object sender, RoutedEventArgs e)
         {
-            if (AddressTypeComboBox.Text != "" && Number.Text != "")
+            if (AddressType.Text != "" && HouseNumber.Text != "" && StreetName.Text != "" && AptOfficeRoom.Text != "" && City.Text != "" && ZipCode.Text != "")
             {
-                //var user = new User
-                //{
-                //    Id = Guid.NewGuid(),
-                //    FirstName = First.Text,
-                //    LastName = Last.Text
-                //};
-                //var db = new dbEntities();
-                //db.Users.Add(user);
-                //db.SaveChanges();
-                //Close();
-                MessageBox.Show("User" + AddressTypeComboBox.Text + " " + Number.Text + " is saved.");
+                var address = new Address
+                {
+                    Id = Guid.NewGuid(),
+                    AddressType_Id = int.Parse(AddressType.Text),
+                    HouseNumber = HouseNumber.Text,
+                    Street = StreetName.Text,
+                    ApartmentNumber = AptOfficeRoom.Text,
+                    City = City.Text,
+                    State_Id = 2,
+                    Country_Id = 1,
+                    Zipcode = ZipCode.Text
+
+                };
+                var db = new dbEntities();
+                db.Addresses.Add(address);
+                db.SaveChanges();
+                MessageBox.Show("User" + AddressType.Text + " is saved.");
                 Close();
             }
             else
             {
                 MessageBox.Show("Error");
             }
+        }
+
+        private void UpdateStates(object sender, RoutedEventArgs e)
+        {
+            var country = Country.SelectedItem as Country;
+            var db = new dbEntities();
+            var states = db.States.Where(t => t.Country_Id == country.Id).OrderBy(t => t.Name).ToList();
+            State.ItemsSource = states;
+            Country.SelectedIndex = 0;
+            State.SelectedIndex = 0;
         }
     }
 }

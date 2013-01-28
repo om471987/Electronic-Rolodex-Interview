@@ -22,16 +22,20 @@
       <End Role="State" EntitySet="States" />
       <End Role="Address" EntitySet="Addresses" />
     </AssociationSet>
+    <AssociationSet Name="FK__UserConta__conta__2F10007B" Association="dbModel.FK__UserConta__conta__2F10007B">
+      <End Role="ContactType" EntitySet="ContactTypes" />
+      <End Role="UserContact" EntitySet="UserContacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__State__Country_I__300424B4" Association="dbModel.FK__State__Country_I__300424B4">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="State" EntitySet="States" />
+    </AssociationSet>
     <AssociationSet Name="FK__Phone__PhoneType__117F9D94" Association="dbModel.FK__Phone__PhoneType__117F9D94">
       <End Role="PhoneType" EntitySet="PhoneTypes" />
       <End Role="Phone" EntitySet="Phones" />
     </AssociationSet>
     <AssociationSet Name="FK__UserConta__User___2E1BDC42" Association="dbModel.FK__UserConta__User___2E1BDC42">
       <End Role="User" EntitySet="Users" />
-      <End Role="UserContacts" EntitySet="UserContacts" />
-    </AssociationSet>
-    <AssociationSet Name="FK__UserConta__conta__2F10007B" Association="dbModel.FK__UserConta__conta__2F10007B">
-      <End Role="ContactType" EntitySet="ContactTypes" />
       <End Role="UserContact" EntitySet="UserContacts" />
     </AssociationSet>
   </EntityContainer>
@@ -39,15 +43,15 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Guid" Nullable="false" />
-    <Property Name="HouseNumber" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-    <Property Name="Street" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-    <Property Name="ApartmentNumber" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
-    <Property Name="City" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-    <Property Name="Zipcode" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-    <Property Name="State_Id" Type="Int32" Nullable="false" />
-    <Property Name="Country_Id" Type="Int32" Nullable="false" />
-    <Property Name="AddressType_Id" Type="Int32" Nullable="false" />
+    <Property Type="Guid" Name="Id" Nullable="false" />
+    <Property Type="String" Name="HouseNumber" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Street" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ApartmentNumber" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="City" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Zipcode" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="State_Id" Nullable="false" />
+    <Property Type="Int32" Name="Country_Id" Nullable="false" />
+    <Property Type="Int32" Name="AddressType_Id" Nullable="false" />
     <NavigationProperty Name="AddressType" Relationship="dbModel.FK__Address__Address__1FCDBCEB" FromRole="Address" ToRole="AddressType" />
     <NavigationProperty Name="Country" Relationship="dbModel.FK__Address__Country__1ED998B2" FromRole="Address" ToRole="Country" />
     <NavigationProperty Name="State" Relationship="dbModel.FK__Address__State_I__1DE57479" FromRole="Address" ToRole="State" />
@@ -56,75 +60,81 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="TypeName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="TypeName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Addresses" Relationship="dbModel.FK__Address__Address__1FCDBCEB" FromRole="AddressType" ToRole="Address" />
   </EntityType>
   <EntityType Name="ContactType">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="TypeName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="TypeName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="UserContacts" Relationship="dbModel.FK__UserConta__conta__2F10007B" FromRole="ContactType" ToRole="UserContact" />
   </EntityType>
   <EntityType Name="Country">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="TypeName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Addresses" Relationship="dbModel.FK__Address__Country__1ED998B2" FromRole="Country" ToRole="Address" />
+    <NavigationProperty Name="States" Relationship="dbModel.FK__State__Country_I__300424B4" FromRole="Country" ToRole="State" />
   </EntityType>
   <EntityType Name="Phone">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Guid" Nullable="false" />
-    <Property Name="Number" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-    <Property Name="PhoneType_Id" Type="Int32" Nullable="false" />
+    <Property Type="Guid" Name="Id" Nullable="false" />
+    <Property Type="Int32" Name="PhoneType_Id" Nullable="false" />
     <NavigationProperty Name="PhoneType" Relationship="dbModel.FK__Phone__PhoneType__117F9D94" FromRole="Phone" ToRole="PhoneType" />
+    <Property Type="Int32" Name="AreaCode" Nullable="false" />
+    <Property Type="Int32" Name="Middle" Nullable="false" />
+    <Property Type="Int32" Name="Last" Nullable="false" />
+    <Property Type="Int32" Name="Extension" />
   </EntityType>
   <EntityType Name="PhoneType">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="TypeName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="TypeName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Phones" Relationship="dbModel.FK__Phone__PhoneType__117F9D94" FromRole="PhoneType" ToRole="Phone" />
   </EntityType>
   <EntityType Name="State">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-    <Property Name="ShortForm" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ShortForm" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="Country_Id" Nullable="false" />
     <NavigationProperty Name="Addresses" Relationship="dbModel.FK__Address__State_I__1DE57479" FromRole="State" ToRole="Address" />
+    <NavigationProperty Name="Country" Relationship="dbModel.FK__State__Country_I__300424B4" FromRole="State" ToRole="Country" />
   </EntityType>
   <EntityType Name="User">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Guid" Nullable="false" />
-    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-    <Property Name="LastName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-    <NavigationProperty Name="UserContacts" Relationship="dbModel.FK__UserConta__User___2E1BDC42" FromRole="User" ToRole="UserContacts" />
+    <Property Type="Guid" Name="Id" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UserContacts" Relationship="dbModel.FK__UserConta__User___2E1BDC42" FromRole="User" ToRole="UserContact" />
   </EntityType>
   <EntityType Name="UserContact">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Guid" Nullable="false" />
-    <Property Name="User_Id" Type="Guid" Nullable="false" />
-    <Property Name="Contact_Id" Type="Guid" Nullable="false" />
-    <NavigationProperty Name="User" Relationship="dbModel.FK__UserConta__User___2E1BDC42" FromRole="UserContacts" ToRole="User" />
+    <Property Type="Guid" Name="Id" Nullable="false" />
+    <Property Type="Guid" Name="User_Id" Nullable="false" />
+    <Property Type="Guid" Name="Contact_Id" Nullable="false" />
     <Property Type="Int32" Name="contactType_Id" Nullable="false" />
     <NavigationProperty Name="ContactType" Relationship="dbModel.FK__UserConta__conta__2F10007B" FromRole="UserContact" ToRole="ContactType" />
+    <NavigationProperty Name="User" Relationship="dbModel.FK__UserConta__User___2E1BDC42" FromRole="UserContact" ToRole="User" />
   </EntityType>
   <Association Name="FK__Address__Address__1FCDBCEB">
-    <End Role="AddressType" Type="dbModel.AddressType" Multiplicity="1" />
-    <End Role="Address" Type="dbModel.Address" Multiplicity="*" />
+    <End Type="dbModel.AddressType" Role="AddressType" Multiplicity="1" />
+    <End Type="dbModel.Address" Role="Address" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AddressType">
         <PropertyRef Name="Id" />
@@ -135,8 +145,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__Address__Country__1ED998B2">
-    <End Role="Country" Type="dbModel.Country" Multiplicity="1" />
-    <End Role="Address" Type="dbModel.Address" Multiplicity="*" />
+    <End Type="dbModel.Country" Role="Country" Multiplicity="1" />
+    <End Type="dbModel.Address" Role="Address" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Country">
         <PropertyRef Name="Id" />
@@ -147,38 +157,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__Address__State_I__1DE57479">
-    <End Role="State" Type="dbModel.State" Multiplicity="1" />
-    <End Role="Address" Type="dbModel.Address" Multiplicity="*" />
+    <End Type="dbModel.State" Role="State" Multiplicity="1" />
+    <End Type="dbModel.Address" Role="Address" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="State">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Address">
         <PropertyRef Name="State_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Phone__PhoneType__117F9D94">
-    <End Role="PhoneType" Type="dbModel.PhoneType" Multiplicity="1" />
-    <End Role="Phone" Type="dbModel.Phone" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="PhoneType">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Phone">
-        <PropertyRef Name="PhoneType_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__UserConta__User___2E1BDC42">
-    <End Role="User" Type="dbModel.User" Multiplicity="1" />
-    <End Role="UserContacts" Type="dbModel.UserContact" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UserContacts">
-        <PropertyRef Name="User_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -191,6 +177,42 @@
       </Principal>
       <Dependent Role="UserContact">
         <PropertyRef Name="contactType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__State__Country_I__300424B4">
+    <End Type="dbModel.Country" Role="Country" Multiplicity="1" />
+    <End Type="dbModel.State" Role="State" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="State">
+        <PropertyRef Name="Country_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Phone__PhoneType__117F9D94">
+    <End Type="dbModel.PhoneType" Role="PhoneType" Multiplicity="1" />
+    <End Type="dbModel.Phone" Role="Phone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhoneType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Phone">
+        <PropertyRef Name="PhoneType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserConta__User___2E1BDC42">
+    <End Type="dbModel.User" Role="User" Multiplicity="1" />
+    <End Type="dbModel.UserContact" Role="UserContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserContact">
+        <PropertyRef Name="User_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

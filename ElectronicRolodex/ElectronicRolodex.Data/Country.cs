@@ -17,11 +17,13 @@ namespace ElectronicRolodex.Data
         public Country()
         {
             this.Addresses = new HashSet<Address>();
+            this.States = new HashSet<State>();
         }
     
         public int Id { get; set; }
-        public string TypeName { get; set; }
+        public string Name { get; set; }
     
         public virtual ICollection<Address> Addresses { get; set; }
+        public virtual ICollection<State> States { get; set; }
     }
 }

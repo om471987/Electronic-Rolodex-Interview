@@ -19,7 +19,7 @@ namespace ElectronicRolodex.Data
         public System.Guid Contact_Id { get; set; }
         public int contactType_Id { get; set; }
     
-        public virtual User User { get; set; }
         public virtual ContactType ContactType { get; set; }
+        public virtual User User { get; set; }
     }
 }

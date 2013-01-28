@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using ElectronicRolodex.Data;
 
 namespace ElectronicRolodex.Desktop
 {
@@ -22,28 +14,68 @@ namespace ElectronicRolodex.Desktop
         public NewPhone()
         {
             InitializeComponent();
+            var db = new dbEntities();
+            var type = db.PhoneTypes.ToList();
+            PhoneType.ItemsSource = type;
         }
 
         private void AddNewPhoneClick(object sender, RoutedEventArgs e)
         {
-            if (PhoneTypeComboBox.Text != "" && Number.Text != "")
+            int intout;
+            var phoneType = (PhoneType.SelectedItem as PhoneType).Id;
+            if (AreaCode.Text.Length < 3 || MiddleNumber.Text.Length < 3 || LastNumber.Text.Length < 4 ||
+                !int.TryParse(AreaCode.Text, out intout) || !int.TryParse(MiddleNumber.Text, out intout) || !int.TryParse(LastNumber.Text, out intout))
             {
-                //var user = new User
-                //{
-                //    Id = Guid.NewGuid(),
-                //    FirstName = First.Text,
-                //    LastName = Last.Text
-                //};
-                //var db = new dbEntities();
-                //db.Users.Add(user);
-                //db.SaveChanges();
-                //Close();
-                MessageBox.Show("User" + PhoneTypeComboBox.Text + " " + Number.Text + " is saved.");
-                Close();
+                ErrorLabel.Content = "Please enter correct phone number.";
+            }
+            else if (phoneType == 1 && (AreaCode.Text.Length < 1 || !int.TryParse(ExtensionNumber.Text, out intout)))
+            {
+                ErrorLabel.Content = "Please enter correct extension.";
             }
             else
             {
-                MessageBox.Show("Error");
+                var phone = new Phone
+                    {
+                        Id = Guid.NewGuid(),
+                        PhoneType_Id = phoneType,
+                        AreaCode = int.Parse(AreaCode.Text),
+                        Middle = int.Parse(MiddleNumber.Text),
+                        Last = int.Parse(LastNumber.Text),
+                        Extension = phoneType == 1 ? int.Parse(ExtensionNumber.Text) : 0
+                    };
+                var db = new dbEntities();
+                db.Phones.Add(phone);
+                db.SaveChanges();
+
+                var message = new StringBuilder(PhoneType.Text);
+                message.Append(" Phone ");
+                message.Append(AreaCode.Text);
+                message.Append("-");
+                message.Append(MiddleNumber.Text);
+                message.Append("-");
+                message.Append(LastNumber.Text);
+                message.Append((phoneType == 1 ? " Ex." + ExtensionNumber.Text : ""));
+                message.Append(" is saved.");
+
+                MessageBox.Show(message.ToString());
+                Close();
+            }
+        }
+
+        private void ToggleExtension(object sender, RoutedEventArgs e)
+        {
+            var phoneType = PhoneType.SelectedItem as PhoneType;
+            if (phoneType.Id == 1) //office phone
+            {
+                ExtensionNumber.Visibility = Visibility.Visible;
+                ExtensionLabel.Visibility = Visibility.Visible;
+                ExtensionNumber.Text = "";
+            }
+            else
+            {
+                ExtensionNumber.Visibility = Visibility.Hidden;
+                ExtensionLabel.Visibility = Visibility.Hidden;
+                ExtensionNumber.Text = "";
             }
         }
     }

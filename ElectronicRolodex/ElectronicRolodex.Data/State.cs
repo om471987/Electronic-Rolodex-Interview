@@ -22,7 +22,9 @@ namespace ElectronicRolodex.Data
         public int Id { get; set; }
         public string Name { get; set; }
         public string ShortForm { get; set; }
+        public int Country_Id { get; set; }
     
         public virtual ICollection<Address> Addresses { get; set; }
+        public virtual Country Country { get; set; }
     }
 }

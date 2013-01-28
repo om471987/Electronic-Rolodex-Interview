@@ -27,7 +27,6 @@ namespace ElectronicRolodex.Desktop
                 var db = new dbEntities();
                 db.Users.Add(user);
                 db.SaveChanges();
-                Close();
                 MessageBox.Show("User" + First.Text + " " + First.Text + " is saved.");
                 Close();
             }

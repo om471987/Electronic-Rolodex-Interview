@@ -31,6 +31,10 @@
             <End Role="PhoneType" EntitySet="PhoneType" />
             <End Role="Phone" EntitySet="Phone" />
           </AssociationSet>
+          <AssociationSet Name="FK__State__Country_I__300424B4" Association="dbModel.Store.FK__State__Country_I__300424B4">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="State" EntitySet="State" />
+          </AssociationSet>
           <AssociationSet Name="FK__UserConta__conta__2F10007B" Association="dbModel.Store.FK__UserConta__conta__2F10007B">
             <End Role="ContactType" EntitySet="ContactType" />
             <End Role="UserContacts" EntitySet="UserContacts" />
@@ -73,14 +77,17 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="TypeName" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
         </EntityType>
         <EntityType Name="Phone">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Number" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="AreaCode" Type="int" Nullable="false" />
+          <Property Name="Middle" Type="int" Nullable="false" />
+          <Property Name="Last" Type="int" Nullable="false" />
+          <Property Name="Extension" Type="int" />
           <Property Name="PhoneType_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PhoneType">
@@ -97,6 +104,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="ShortForm" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="Country_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -163,6 +171,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__State__Country_I__300424B4">
+          <End Role="Country" Type="dbModel.Store.Country" Multiplicity="1" />
+          <End Role="State" Type="dbModel.Store.State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="Country_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__UserConta__conta__2F10007B">
           <End Role="ContactType" Type="dbModel.Store.ContactType" Multiplicity="1" />
           <End Role="UserContacts" Type="dbModel.Store.UserContacts" Multiplicity="*" />
@@ -213,16 +233,20 @@
             <End Role="State" EntitySet="States" />
             <End Role="Address" EntitySet="Addresses" />
           </AssociationSet>
+          <AssociationSet Name="FK__UserConta__conta__2F10007B" Association="dbModel.FK__UserConta__conta__2F10007B">
+            <End Role="ContactType" EntitySet="ContactTypes" />
+            <End Role="UserContact" EntitySet="UserContacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__State__Country_I__300424B4" Association="dbModel.FK__State__Country_I__300424B4">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="State" EntitySet="States" />
+          </AssociationSet>
           <AssociationSet Name="FK__Phone__PhoneType__117F9D94" Association="dbModel.FK__Phone__PhoneType__117F9D94">
             <End Role="PhoneType" EntitySet="PhoneTypes" />
             <End Role="Phone" EntitySet="Phones" />
           </AssociationSet>
           <AssociationSet Name="FK__UserConta__User___2E1BDC42" Association="dbModel.FK__UserConta__User___2E1BDC42">
             <End Role="User" EntitySet="Users" />
-            <End Role="UserContacts" EntitySet="UserContacts" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserConta__conta__2F10007B" Association="dbModel.FK__UserConta__conta__2F10007B">
-            <End Role="ContactType" EntitySet="ContactTypes" />
             <End Role="UserContact" EntitySet="UserContacts" />
           </AssociationSet>
         </EntityContainer>
@@ -230,15 +254,15 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="HouseNumber" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="Street" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="ApartmentNumber" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
-          <Property Name="City" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="Zipcode" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="State_Id" Type="Int32" Nullable="false" />
-          <Property Name="Country_Id" Type="Int32" Nullable="false" />
-          <Property Name="AddressType_Id" Type="Int32" Nullable="false" />
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="String" Name="HouseNumber" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Street" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ApartmentNumber" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="City" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Zipcode" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="State_Id" Nullable="false" />
+          <Property Type="Int32" Name="Country_Id" Nullable="false" />
+          <Property Type="Int32" Name="AddressType_Id" Nullable="false" />
           <NavigationProperty Name="AddressType" Relationship="dbModel.FK__Address__Address__1FCDBCEB" FromRole="Address" ToRole="AddressType" />
           <NavigationProperty Name="Country" Relationship="dbModel.FK__Address__Country__1ED998B2" FromRole="Address" ToRole="Country" />
           <NavigationProperty Name="State" Relationship="dbModel.FK__Address__State_I__1DE57479" FromRole="Address" ToRole="State" />
@@ -247,75 +271,81 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="TypeName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Addresses" Relationship="dbModel.FK__Address__Address__1FCDBCEB" FromRole="AddressType" ToRole="Address" />
         </EntityType>
         <EntityType Name="ContactType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="TypeName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="UserContacts" Relationship="dbModel.FK__UserConta__conta__2F10007B" FromRole="ContactType" ToRole="UserContact" />
         </EntityType>
         <EntityType Name="Country">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Addresses" Relationship="dbModel.FK__Address__Country__1ED998B2" FromRole="Country" ToRole="Address" />
+          <NavigationProperty Name="States" Relationship="dbModel.FK__State__Country_I__300424B4" FromRole="Country" ToRole="State" />
         </EntityType>
         <EntityType Name="Phone">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Number" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="PhoneType_Id" Type="Int32" Nullable="false" />
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="PhoneType_Id" Nullable="false" />
           <NavigationProperty Name="PhoneType" Relationship="dbModel.FK__Phone__PhoneType__117F9D94" FromRole="Phone" ToRole="PhoneType" />
+          <Property Type="Int32" Name="AreaCode" Nullable="false" />
+          <Property Type="Int32" Name="Middle" Nullable="false" />
+          <Property Type="Int32" Name="Last" Nullable="false" />
+          <Property Type="Int32" Name="Extension" />
         </EntityType>
         <EntityType Name="PhoneType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="TypeName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Phones" Relationship="dbModel.FK__Phone__PhoneType__117F9D94" FromRole="PhoneType" ToRole="Phone" />
         </EntityType>
         <EntityType Name="State">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="ShortForm" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ShortForm" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Country_Id" Nullable="false" />
           <NavigationProperty Name="Addresses" Relationship="dbModel.FK__Address__State_I__1DE57479" FromRole="State" ToRole="Address" />
+          <NavigationProperty Name="Country" Relationship="dbModel.FK__State__Country_I__300424B4" FromRole="State" ToRole="Country" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="UserContacts" Relationship="dbModel.FK__UserConta__User___2E1BDC42" FromRole="User" ToRole="UserContacts" />
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserContacts" Relationship="dbModel.FK__UserConta__User___2E1BDC42" FromRole="User" ToRole="UserContact" />
         </EntityType>
         <EntityType Name="UserContact">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="User_Id" Type="Guid" Nullable="false" />
-          <Property Name="Contact_Id" Type="Guid" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="dbModel.FK__UserConta__User___2E1BDC42" FromRole="UserContacts" ToRole="User" />
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Guid" Name="User_Id" Nullable="false" />
+          <Property Type="Guid" Name="Contact_Id" Nullable="false" />
           <Property Type="Int32" Name="contactType_Id" Nullable="false" />
           <NavigationProperty Name="ContactType" Relationship="dbModel.FK__UserConta__conta__2F10007B" FromRole="UserContact" ToRole="ContactType" />
+          <NavigationProperty Name="User" Relationship="dbModel.FK__UserConta__User___2E1BDC42" FromRole="UserContact" ToRole="User" />
         </EntityType>
         <Association Name="FK__Address__Address__1FCDBCEB">
-          <End Role="AddressType" Type="dbModel.AddressType" Multiplicity="1" />
-          <End Role="Address" Type="dbModel.Address" Multiplicity="*" />
+          <End Type="dbModel.AddressType" Role="AddressType" Multiplicity="1" />
+          <End Type="dbModel.Address" Role="Address" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AddressType">
               <PropertyRef Name="Id" />
@@ -326,8 +356,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Address__Country__1ED998B2">
-          <End Role="Country" Type="dbModel.Country" Multiplicity="1" />
-          <End Role="Address" Type="dbModel.Address" Multiplicity="*" />
+          <End Type="dbModel.Country" Role="Country" Multiplicity="1" />
+          <End Type="dbModel.Address" Role="Address" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Country">
               <PropertyRef Name="Id" />
@@ -338,38 +368,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Address__State_I__1DE57479">
-          <End Role="State" Type="dbModel.State" Multiplicity="1" />
-          <End Role="Address" Type="dbModel.Address" Multiplicity="*" />
+          <End Type="dbModel.State" Role="State" Multiplicity="1" />
+          <End Type="dbModel.Address" Role="Address" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="State">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Address">
               <PropertyRef Name="State_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Phone__PhoneType__117F9D94">
-          <End Role="PhoneType" Type="dbModel.PhoneType" Multiplicity="1" />
-          <End Role="Phone" Type="dbModel.Phone" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PhoneType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Phone">
-              <PropertyRef Name="PhoneType_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserConta__User___2E1BDC42">
-          <End Role="User" Type="dbModel.User" Multiplicity="1" />
-          <End Role="UserContacts" Type="dbModel.UserContact" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserContacts">
-              <PropertyRef Name="User_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -385,7 +391,43 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK__State__Country_I__300424B4">
+          <End Type="dbModel.Country" Role="Country" Multiplicity="1" />
+          <End Type="dbModel.State" Role="State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="Country_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Phone__PhoneType__117F9D94">
+          <End Type="dbModel.PhoneType" Role="PhoneType" Multiplicity="1" />
+          <End Type="dbModel.Phone" Role="Phone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhoneType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Phone">
+              <PropertyRef Name="PhoneType_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserConta__User___2E1BDC42">
+          <End Type="dbModel.User" Role="User" Multiplicity="1" />
+          <End Type="dbModel.UserContact" Role="UserContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserContact">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -394,74 +436,78 @@
           <EntitySetMapping Name="Addresses">
             <EntityTypeMapping TypeName="dbModel.Address">
               <MappingFragment StoreEntitySet="Address">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
-                <ScalarProperty Name="Street" ColumnName="Street" />
-                <ScalarProperty Name="ApartmentNumber" ColumnName="ApartmentNumber" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
-                <ScalarProperty Name="State_Id" ColumnName="State_Id" />
-                <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
                 <ScalarProperty Name="AddressType_Id" ColumnName="AddressType_Id" />
+                <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+                <ScalarProperty Name="State_Id" ColumnName="State_Id" />
+                <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="ApartmentNumber" ColumnName="ApartmentNumber" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AddressTypes">
             <EntityTypeMapping TypeName="dbModel.AddressType">
               <MappingFragment StoreEntitySet="AddressType">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ContactTypes">
             <EntityTypeMapping TypeName="dbModel.ContactType">
               <MappingFragment StoreEntitySet="ContactType">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Countries">
             <EntityTypeMapping TypeName="dbModel.Country">
               <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Phones">
             <EntityTypeMapping TypeName="dbModel.Phone">
               <MappingFragment StoreEntitySet="Phone">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Extension" ColumnName="Extension" />
+                <ScalarProperty Name="Last" ColumnName="Last" />
+                <ScalarProperty Name="Middle" ColumnName="Middle" />
+                <ScalarProperty Name="AreaCode" ColumnName="AreaCode" />
                 <ScalarProperty Name="PhoneType_Id" ColumnName="PhoneType_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PhoneTypes">
             <EntityTypeMapping TypeName="dbModel.PhoneType">
               <MappingFragment StoreEntitySet="PhoneType">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="States">
             <EntityTypeMapping TypeName="dbModel.State">
               <MappingFragment StoreEntitySet="State">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
                 <ScalarProperty Name="ShortForm" ColumnName="ShortForm" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="dbModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -469,9 +515,9 @@
             <EntityTypeMapping TypeName="dbModel.UserContact">
               <MappingFragment StoreEntitySet="UserContacts">
                 <ScalarProperty Name="contactType_Id" ColumnName="contactType_Id" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
                 <ScalarProperty Name="Contact_Id" ColumnName="Contact_Id" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
