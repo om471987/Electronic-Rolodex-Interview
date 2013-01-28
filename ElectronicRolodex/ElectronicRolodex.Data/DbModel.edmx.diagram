@@ -5,15 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="78c7c62b265d4124b4bc37f29f119030" Name="Diagram1" ZoomLevel="55">
-        <EntityTypeShape EntityType="dbModel.Address" Width="1.5" PointX="7.10749111282988" PointY="3.1759910747297067" />
-        <EntityTypeShape EntityType="dbModel.AddressType" Width="1.5" PointX="11.428863946082473" PointY="15.339973486652585" />
-        <EntityTypeShape EntityType="dbModel.ContactType" Width="1.5" PointX="7.1651172894822048" PointY="12.415241247236375" />
-        <EntityTypeShape EntityType="dbModel.Country" Width="1.5" PointX="6.3521646030024455" PointY="16.135805837873278" />
-        <EntityTypeShape EntityType="dbModel.Phone" Width="1.5" PointX="2.8905775187958858" PointY="12.63493636838856" />
-        <EntityTypeShape EntityType="dbModel.PhoneType" Width="1.5" PointX="4.3115331662406833" PointY="16.956292905358733" />
-        <EntityTypeShape EntityType="dbModel.State" Width="1.5" PointX="0.61353068641085673" PointY="7.5543412452351024" />
-        <EntityTypeShape EntityType="dbModel.User" Width="1.5" PointX="4.3148453199839425" PointY="9.2066116375879439" />
-        <EntityTypeShape EntityType="dbModel.UserContact" Width="1.5" PointX="5.5535923734091188" PointY="9.9410561965503987" />
+        <EntityTypeShape EntityType="dbModel.Address" Width="1.5" PointX="6" PointY="0.5" />
+        <EntityTypeShape EntityType="dbModel.AddressType" Width="1.5" PointX="9" PointY="2" />
+        <EntityTypeShape EntityType="dbModel.ContactType" Width="1.5" PointX="12" PointY="3.5" />
+        <EntityTypeShape EntityType="dbModel.Country" Width="1.5" PointX="15" PointY="5" />
+        <EntityTypeShape EntityType="dbModel.Phone" Width="1.5" PointX="18" PointY="6.5" />
+        <EntityTypeShape EntityType="dbModel.PhoneType" Width="1.5" PointX="0.5" PointY="8" />
+        <EntityTypeShape EntityType="dbModel.State" Width="1.5" PointX="3" PointY="9.5" />
+        <EntityTypeShape EntityType="dbModel.User" Width="1.5" PointX="6" PointY="11" />
+        <EntityTypeShape EntityType="dbModel.UserContact" Width="1.5" PointX="9" PointY="12.5" />
         <AssociationConnector Association="dbModel.FK__Address__Address__1FCDBCEB" />
         <AssociationConnector Association="dbModel.FK__Address__Country__1ED998B2" />
         <AssociationConnector Association="dbModel.FK__Address__State_I__1DE57479" />

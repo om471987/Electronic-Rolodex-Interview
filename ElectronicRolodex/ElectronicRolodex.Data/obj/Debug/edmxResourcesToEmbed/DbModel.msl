@@ -83,7 +83,6 @@
       <EntityTypeMapping TypeName="dbModel.UserContact">
         <MappingFragment StoreEntitySet="UserContacts">
           <ScalarProperty Name="contactType_Id" ColumnName="contactType_Id" />
-          <ScalarProperty Name="Contact_Id" ColumnName="Contact_Id" />
           <ScalarProperty Name="User_Id" ColumnName="User_Id" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>

@@ -4,10 +4,13 @@
         Title="NewUser" Width="600" Height="300">
     <Grid Name="NewUserGrid">
       <Label Content="First Name" HorizontalAlignment="Left" Height="23" Margin="81,66,0,0" VerticalAlignment="Top" Width="120"/>
-      <TextBox Name="First" HorizontalAlignment="Left" Height="23" Margin="298,66,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+      <TextBox Name="First" HorizontalAlignment="Left" Height="23" Margin="298,66,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" MaxLength="24"/>
 
       <Label Content="Last Name" HorizontalAlignment="Left" Height="23" Margin="81,119,0,0" VerticalAlignment="Top" Width="120"/>
-      <TextBox Name="Last" HorizontalAlignment="Left" Height="23" Margin="298,119,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+      <TextBox Name="Last" HorizontalAlignment="Left" Height="23" Margin="298,119,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" MaxLength="24"/>
+
+      <Label Name="ErrorLabel" Content="" Foreground="Red" HorizontalAlignment="Left" Height="30" Margin="69,175,0,0" VerticalAlignment="Top" Width="442"/>
+       
       <Button Content="Submit" HorizontalAlignment="Left" Margin="436,224,0,0" VerticalAlignment="Top" Width="75" Click="NewUserClick"/>
    </Grid>
 </Window>

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="UserList" WindowState="Maximized">
    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-      <FlowDocumentReader UseLayoutRounding="True" SnapsToDevicePixels="True">
+      <FlowDocumentReader UseLayoutRounding="True" SnapsToDevicePixels="True" Width="600" Height="400">
          <FlowDocumentReader.Resources>
             <Style TargetType="TableCell">
                <Setter Property="TextAlignment" Value="Center"/>
@@ -12,26 +12,25 @@
          <FlowDocument>
             <Table CellSpacing="0">
                <Table.Columns>
-                  <TableColumn />
                   <TableColumn Width="100"/>
-                  <TableColumn Width="100"/>
-                  <TableColumn Width="100"/>
-                  <TableColumn Width="100"/>
-                  <TableColumn Width="100"/>
-                  <TableColumn Width="100"/>
-                  <TableColumn Width="100"/>
+                  <TableColumn Width="200"/>
+                  <TableColumn Width="200"/>
+                  <TableColumn Width="200"/>
+                  <TableColumn Width="200"/>
+                  <TableColumn Width="200"/>
+                  <TableColumn Width="200"/>
+                  <TableColumn Width="200"/>
                </Table.Columns>
                <TableRowGroup Name="UserTable">
                   <TableRow>
                      <TableCell BorderBrush="Black" 
                                 BorderThickness="1">
-                        <Paragraph >
-                           <Button Name="AddUser" Width="100" Height="23" Content="Add User" Click="NewUserClick"></Button>
+                        <Paragraph>
+                           <Button Name="AddUser" Width="100" Content="Add User" Click="NewUserClick"/>
                         </Paragraph>
                      </TableCell>
                      <TableCell BorderBrush="Black" 
-                                BorderThickness="0,1,1,1"
-                                >
+                                BorderThickness="0,1,1,1">
                         <Paragraph>First Name</Paragraph>
                      </TableCell>
                      <TableCell BorderBrush="Black" 

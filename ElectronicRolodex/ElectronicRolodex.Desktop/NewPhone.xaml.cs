@@ -45,7 +45,15 @@ namespace ElectronicRolodex.Desktop
                     };
                 var db = new dbEntities();
                 db.Phones.Add(phone);
-                db.SaveChanges();
+
+                var userContacts = new UserContact
+                {
+                    User_Id = Guid.NewGuid(),
+                    contactType_Id = 1
+                };
+                db.UserContacts.Add(userContacts);
+
+                //db.SaveChanges();
 
                 var message = new StringBuilder(PhoneType.Text);
                 message.Append(" Phone ");

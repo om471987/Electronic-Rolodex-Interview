@@ -29,13 +29,13 @@ namespace ElectronicRolodex.Desktop
                 currentRow.Cells.Add(new TableCell(new Paragraph(new Run(t.FirstName))) { BorderThickness = new Thickness(0, 0, 1, 1), BorderBrush = Brushes.Black });
                 currentRow.Cells.Add(new TableCell(new Paragraph(new Run(t.LastName))) { BorderThickness = new Thickness(0, 0, 1, 1), BorderBrush = Brushes.Black });
 
-                var viewButton = new Button { Content = "Add Address" };
+                var viewButton = new Button { Content = "Add" };
                 viewButton.Click += NewAddressClick;
                 var viewParagraph = new Paragraph { BorderThickness = new Thickness(0, 0, 1, 1), BorderBrush = Brushes.Black };
                 viewParagraph.Inlines.Add(viewButton);
                 currentRow.Cells.Add(new TableCell(viewParagraph));
 
-                var addButton = new Button { Content = "Add Phone" };
+                var addButton = new Button { Content = "Add" };
                 addButton.Click += NewPhoneClick;
                 var addParagraph = new Paragraph { BorderThickness = new Thickness(0, 0, 1, 1), BorderBrush = Brushes.Black };
                 addParagraph.Inlines.Add(addButton);

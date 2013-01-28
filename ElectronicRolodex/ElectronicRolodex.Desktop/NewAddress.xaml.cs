@@ -53,7 +53,14 @@ namespace ElectronicRolodex.Desktop
                 };
                 var db = new dbEntities();
                 db.Addresses.Add(address);
-                db.SaveChanges();
+
+                var userContacts = new UserContact
+                    {
+                        User_Id = Guid.NewGuid(),
+                        contactType_Id = 2
+                    };
+                db.UserContacts.Add(userContacts);
+                //db.SaveChanges();
 
                 var message = new StringBuilder(AddressType.Text);
                 message.Append("  address, ");
