@@ -1,22 +1,88 @@
 ﻿<Window x:Class="ElectronicRolodex.Desktop.NewPhone"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="New Phone" Width="436" Height="264">
+        Title="New Phone" 
+        Width="436" 
+        Height="264">
     <Grid>
-      <Label Content="Number" HorizontalAlignment="Left" Height="30" Margin="31,41,0,0" VerticalAlignment="Top" Width="120"/>
+      <Label Content="Number" 
+             HorizontalAlignment="Left" 
+             Height="30" 
+             Margin="31,41,0,0" 
+             VerticalAlignment="Top" 
+             Width="120"/>
        
-      <TextBox Name="AreaCode" HorizontalAlignment="Left" Height="30" Margin="171,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="47" MaxLength="3"/>
-      <TextBox Name="MiddleNumber" HorizontalAlignment="Left" Height="30" Margin="232,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="50" MaxLength="3"/>
-      <TextBox Name="LastNumber" HorizontalAlignment="Left" Height="30" Margin="301,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="59" MaxLength="4"/>
+      <TextBox Name="AreaCode" 
+               HorizontalAlignment="Left" 
+               Height="30" 
+               Margin="171,41,0,0" 
+               TextWrapping="Wrap" 
+               Text="" 
+               VerticalAlignment="Top" 
+               Width="47" 
+               MaxLength="3"/>
+        
+      <TextBox Name="MiddleNumber" 
+               HorizontalAlignment="Left" 
+               Height="30" 
+               Margin="232,41,0,0" 
+               TextWrapping="Wrap" 
+               Text="" 
+               VerticalAlignment="Top" 
+               Width="50" 
+               MaxLength="3"/>
+        
+      <TextBox Name="LastNumber" 
+               HorizontalAlignment="Left" 
+               Height="30" 
+               Margin="301,41,0,0" 
+               TextWrapping="Wrap" 
+               Text="" 
+               VerticalAlignment="Top" 
+               Width="59" 
+               MaxLength="4"/>
 
-      <Label Name="ExtensionLabel" Content="Extension (Optional)" Visibility="Hidden" HorizontalAlignment="Left" Height="30" Margin="205,115,0,0" VerticalAlignment="Top" Width="61"/>
-      <TextBox Name="ExtensionNumber" Visibility="Hidden" HorizontalAlignment="Left" Height="30" Margin="285,115,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="59" MaxLength="4"/>
+      <Label Name="ExtensionLabel" 
+             Content="Extension (Optional)" 
+             Visibility="Hidden" 
+             HorizontalAlignment="Left" 
+             Height="30" 
+             Margin="205,115,0,0" 
+             VerticalAlignment="Top" 
+             Width="61"/>
+        
+      <TextBox Name="ExtensionNumber" 
+               Visibility="Hidden" 
+               HorizontalAlignment="Left" 
+               Height="30" 
+               Margin="285,115,0,0" 
+               TextWrapping="Wrap" 
+               Text="" 
+               VerticalAlignment="Top" 
+               Width="59" 
+               MaxLength="4"/>
 
-      <Label Name="ErrorLabel" Content="" Foreground="Red" HorizontalAlignment="Left" Height="30" Margin="31,135,0,0" VerticalAlignment="Top" Width="329"/>
+      <Label Name="ErrorLabel" 
+             Content="" 
+             Foreground="Red" 
+             HorizontalAlignment="Left" 
+             Height="30" 
+             Margin="31,135,0,0" 
+             VerticalAlignment="Top" 
+             Width="329"/>
 
-      <Button Content="Back" HorizontalAlignment="Left" Margin="180,170,0,0" VerticalAlignment="Top" Width="75" Click="BackToListClick"/>
+      <Button Content="Back" 
+              HorizontalAlignment="Left" 
+              Margin="180,170,0,0" 
+              VerticalAlignment="Top" 
+              Width="75" 
+              Click="BackToListClick"/>
        
-      <Button Content="Submit" HorizontalAlignment="Left" Margin="285,170,0,0" VerticalAlignment="Top" Width="75" Click="AddNewPhoneClick"/>
-      
+      <Button Content="Submit" 
+              HorizontalAlignment="Left" 
+              Margin="285,170,0,0" 
+              VerticalAlignment="Top" 
+              Width="75" 
+              Click="AddNewPhoneClick"/>
    </Grid>
 </Window>

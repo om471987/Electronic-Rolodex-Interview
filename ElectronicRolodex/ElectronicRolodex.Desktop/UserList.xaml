@@ -1,8 +1,10 @@
 ﻿<Window x:Class="ElectronicRolodex.Desktop.UserList"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="UserList" WindowState="Maximized">
-   <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+        Title="UserList" 
+        WindowState="Maximized">
+   <Grid VerticalAlignment="Center" 
+         HorizontalAlignment="Center">
       <FlowDocumentReader UseLayoutRounding="True" 
                           SnapsToDevicePixels="True" 
                           ViewingMode="Scroll"  
@@ -12,7 +14,8 @@
                           MinZoom="100">
          <FlowDocumentReader.Resources>
             <Style TargetType="TableCell">
-               <Setter Property="TextAlignment" Value="Center"/>
+               <Setter Property="TextAlignment" 
+                       Value="Center"/>
             </Style>
          </FlowDocumentReader.Resources>
          <FlowDocument>
@@ -29,7 +32,10 @@
                      <TableCell BorderBrush="Black" 
                                 BorderThickness="1">
                         <Paragraph>
-                           <Button Name="AddUser" Width="100" Content="Add User" Click="NewUserClick"/>
+                           <Button Name="AddUser" 
+                                   Width="100" 
+                                   Content="Add User" 
+                                   Click="NewUserClick"/>
                         </Paragraph>
                      </TableCell>
                      <TableCell BorderBrush="Black" 
