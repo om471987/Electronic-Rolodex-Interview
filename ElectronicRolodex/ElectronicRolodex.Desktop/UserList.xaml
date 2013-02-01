@@ -3,7 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="UserList" WindowState="Maximized">
    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-      <FlowDocumentReader UseLayoutRounding="True" SnapsToDevicePixels="True" ViewingMode="Scroll"  IsPageViewEnabled="False" IsTwoPageViewEnabled="False">
+      <FlowDocumentReader UseLayoutRounding="True" 
+                          SnapsToDevicePixels="True" 
+                          ViewingMode="Scroll"  
+                          IsPageViewEnabled="False"
+                          IsTwoPageViewEnabled="False"
+                          MaxZoom="100"
+                          MinZoom="100">
          <FlowDocumentReader.Resources>
             <Style TargetType="TableCell">
                <Setter Property="TextAlignment" Value="Center"/>
@@ -16,8 +22,8 @@
                   <TableColumn Width="200"/>
                   <TableColumn Width="250"/>
                   <TableColumn Width="250"/>
-                  <TableColumn Width="250"/>
-               </Table.Columns>
+                  <TableColumn Width="500"/>
+                    </Table.Columns>
                <TableRowGroup Name="UserTable">
                   <TableRow>
                      <TableCell BorderBrush="Black" 
@@ -40,11 +46,7 @@
                      </TableCell>
                      <TableCell BorderBrush="Black" 
                                 BorderThickness="0,1,1,1">
-                        <Paragraph >City</Paragraph>
-                     </TableCell>
-                     <TableCell BorderBrush="Black" 
-                                BorderThickness="0,1,1,1">
-                        <Paragraph >State</Paragraph>
+                        <Paragraph >Address</Paragraph>
                      </TableCell>
                   </TableRow>
                </TableRowGroup>

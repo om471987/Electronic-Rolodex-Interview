@@ -10,6 +10,9 @@ namespace ElectronicRolodex.Desktop
     /// </summary>
     public partial class NewUser : Window
     {
+        public User user { get; set; }
+        public bool IsUserAdded { get; set; }
+
         public NewUser()
         {
             InitializeComponent();
@@ -23,7 +26,7 @@ namespace ElectronicRolodex.Desktop
             }
             else
             {
-                var user = new User
+                user = new User
                 {
                     Id = Guid.NewGuid(),
                     FirstName = First.Text,
@@ -32,11 +35,8 @@ namespace ElectronicRolodex.Desktop
                 var db = new dbEntities();
                 db.Users.Add(user);
                 db.SaveChanges();
-                MessageBox.Show("User " + First.Text + " " + Last.Text + " is saved.");
-                
-
-                var userList = new UserList();
-                userList.Show();
+                IsUserAdded = true;
+                MessageBox.Show("User " + First.Text + " " + Last.Text + " is added.");
                 Close();
             }
         }

@@ -14,6 +14,9 @@ namespace ElectronicRolodex.Desktop
     {
         private readonly Guid _user;
 
+        public Address Address { get; set; }
+        public bool IsAddressAdded { get; set; }
+
         public NewAddress(Guid user)
         {
             _user = user;
@@ -38,7 +41,7 @@ namespace ElectronicRolodex.Desktop
             }
             else
             {
-                var address = new Address
+                Address = new Address
                 {
                     Id = Guid.NewGuid(),
                     AddressType_Id = (int) AddressCollection.Home,
@@ -51,18 +54,18 @@ namespace ElectronicRolodex.Desktop
                     Zipcode = int.Parse(ZipCode.Text)
                 };
                 var db = new dbEntities();
-                db.Addresses.Add(address);
+                db.Addresses.Add(Address);
 
                 var userContacts = new UserContact
                     {
                         Id = Guid.NewGuid(),
                         User_Id = _user,
                         contactType_Id = (int) ContactCollection.Address,
-                        Contact_Id = address.Id
+                        Contact_Id = Address.Id
                     };
                 db.UserContacts.Add(userContacts);
                 db.SaveChanges();
-
+                IsAddressAdded = true;
                 var message = new StringBuilder("Address, ");
                 message.Append(HouseNumber.Text);
                 message.Append(", ");
@@ -81,10 +84,6 @@ namespace ElectronicRolodex.Desktop
                 message.Append(ZipCode.Text);
                 message.Append(" address is saved.");
                 MessageBox.Show(message.ToString());
-                
-
-                var userList = new UserList();
-                userList.Show();
                 Close();
             }
         }

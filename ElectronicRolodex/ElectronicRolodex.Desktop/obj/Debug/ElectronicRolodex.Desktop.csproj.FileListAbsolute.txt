@@ -3,15 +3,8 @@ C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRo
 C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\bin\Debug\ElectronicRolodex.Desktop.pdb
 C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\bin\Debug\ElectronicRolodex.Data.dll
 C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\bin\Debug\EntityFramework.dll
-C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\bin\Debug\Microsoft.Practices.ServiceLocation.dll
-C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
-C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\bin\Debug\Microsoft.Practices.Unity.dll
 C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\bin\Debug\ElectronicRolodex.Data.pdb
 C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\bin\Debug\EntityFramework.xml
-C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
-C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\bin\Debug\Microsoft.Practices.ServiceLocation.xml
-C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\bin\Debug\Microsoft.Practices.Unity.xml
-C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
 C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\obj\Debug\ElectronicRolodex.Desktop.csprojResolveAssemblyReference.cache
 C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\obj\Debug\Login.baml
 C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Desktop\obj\Debug\NewAddress.baml
