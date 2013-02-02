@@ -1,0 +1,7 @@
+C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Data\bin\Release\ElectronicRolodex.Data.dll.config
+C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Data\bin\Release\ElectronicRolodex.Data.dll
+C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Data\bin\Release\ElectronicRolodex.Data.pdb
+C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Data\bin\Release\EntityFramework.dll
+C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Data\bin\Release\EntityFramework.xml
+C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Data\obj\Release\ElectronicRolodex.Data.dll
+C:\Users\omkar\Documents\GitHub\ElectronicRolodex\ElectronicRolodex\ElectronicRolodex.Data\obj\Release\ElectronicRolodex.Data.pdb
