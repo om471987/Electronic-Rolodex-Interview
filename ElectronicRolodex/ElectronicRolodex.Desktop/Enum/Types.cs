@@ -14,4 +14,9 @@
     {
         Office = 1, Home
     }
+
+    public enum ButtonType
+    {
+        OfficeButton = 1, HomeButton, AddressButton
+    }
 }

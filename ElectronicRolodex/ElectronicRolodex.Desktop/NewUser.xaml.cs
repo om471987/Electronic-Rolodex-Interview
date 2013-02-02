@@ -22,7 +22,7 @@ namespace ElectronicRolodex.Desktop
         {
             if (First.Text == "" || Last.Text == "" || !Regex.Match(First.Text, @"^[a-zA-Z]+$").Success || !Regex.Match(Last.Text, @"^[a-zA-Z]+$").Success)
             {
-                ErrorLabel.Content = "Please enter valid adddress.";
+                ErrorLabel.Content = Properties.Resources.EnterValidAddress;
             }
             else
             {
@@ -39,15 +39,6 @@ namespace ElectronicRolodex.Desktop
                 MessageBox.Show("User " + First.Text + " " + Last.Text + " is added.");
                 Close();
             }
-        }
-
-        private void BackToListClick(object sender, RoutedEventArgs e)
-        {
-            
-
-            var userList = new UserList();
-            userList.Show();
-            Close();
         }
     }
 }

@@ -53,13 +53,5 @@
               VerticalAlignment="Top" 
               Width="75" 
               Click="AddNewAddressClick"/>
-
-      <Button Content="Back" 
-              HorizontalAlignment="Left" 
-              Margin="261,224,0,0" 
-              VerticalAlignment="Top" 
-              Width="75" 
-              Click="BackToListClick" 
-              RenderTransformOrigin="1.52,-0.05"/>
    </Grid>
 </Window>

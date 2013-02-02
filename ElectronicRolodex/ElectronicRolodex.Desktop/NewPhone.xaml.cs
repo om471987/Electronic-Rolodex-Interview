@@ -35,56 +35,67 @@ namespace ElectronicRolodex.Desktop
             if (AreaCode.Text.Length < 3 || MiddleNumber.Text.Length < 3 || LastNumber.Text.Length < 4 ||
                 !int.TryParse(AreaCode.Text, out intout) || !int.TryParse(MiddleNumber.Text, out intout) || !int.TryParse(LastNumber.Text, out intout))
             {
-                ErrorLabel.Content = "Please enter correct phone number.";
+                ErrorLabel.Content = Properties.Resources.EnterValidPhone;
             }
             else if (_phoneType == 1 && (AreaCode.Text.Length > 0 && !int.TryParse(ExtensionNumber.Text, out intout)))
             {
-                ErrorLabel.Content = "Please enter correct extension.";
+                ErrorLabel.Content = Properties.Resources.EnterValidExtension;
             }
             else
             {
-                Phone = new Phone
-                    {
-                        Id = Guid.NewGuid(),
-                        PhoneType_Id = _phoneType,
-                        AreaCode = int.Parse(AreaCode.Text),
-                        Middle = int.Parse(MiddleNumber.Text),
-                        Last = int.Parse(LastNumber.Text),
-                        Extension = _phoneType == 1 ? int.Parse(ExtensionNumber.Text) : 0
-                    };
-                var db = new dbEntities();
-                db.Phones.Add(Phone);
-
-                var userContacts = new UserContact
-                {
-                    Id = Guid.NewGuid(),
-                    User_Id = _user,
-                    contactType_Id = (int) ContactCollection.Phone,
-                    Contact_Id = Phone.Id
-                };
-                db.UserContacts.Add(userContacts);
-
-                db.SaveChanges();
-                IsPhoneAdded = true;
-                var message = new StringBuilder("Phone ");
-                message.Append(AreaCode.Text);
-                message.Append("-");
-                message.Append(MiddleNumber.Text);
-                message.Append("-");
-                message.Append(LastNumber.Text);
-                message.Append((_phoneType == 1 ? " Ex." + ExtensionNumber.Text : ""));
-                message.Append(" is saved.");
-
-                MessageBox.Show(message.ToString());
+                IsPhoneAdded = SavePhone();
+                MessageBox.Show(BuildSuccessMessage());
                 Close();
             }
         }
 
-        private void BackToListClick(object sender, RoutedEventArgs e)
+        private bool SavePhone()
         {
-            var userList = new UserList();
-            userList.Show();
-            Close();
+            Phone = new Phone
+            {
+                Id = Guid.NewGuid(),
+                PhoneType_Id = _phoneType,
+                AreaCode = int.Parse(AreaCode.Text),
+                Middle = int.Parse(MiddleNumber.Text),
+                Last = int.Parse(LastNumber.Text),
+                Extension = _phoneType == 1 ? int.Parse(ExtensionNumber.Text) : 0
+            };
+
+            var userContacts = new UserContact
+            {
+                Id = Guid.NewGuid(),
+                User_Id = _user,
+                contactType_Id = (int)ContactCollection.Phone,
+                Contact_Id = Phone.Id
+            };
+
+            try
+            {
+                using (var db = new dbEntities())
+                {
+                    db.Phones.Add(Phone);
+                    db.UserContacts.Add(userContacts);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch
+            {
+            }
+            return false;
+        }
+
+        private string BuildSuccessMessage()
+        {
+            var message = new StringBuilder("Phone ");
+            message.Append(AreaCode.Text);
+            message.Append("-");
+            message.Append(MiddleNumber.Text);
+            message.Append("-");
+            message.Append(LastNumber.Text);
+            message.Append((_phoneType == 1 ? " Ex." + ExtensionNumber.Text : ""));
+            message.Append(" is saved.");
+            return message.ToString();
         }
     }
 }

@@ -14,75 +14,65 @@ namespace ElectronicRolodex.Desktop
     /// </summary>
     public partial class UserList
     {
+        private int _count = 0;
+
         public UserList()
         {
             InitializeComponent();
             var db = new dbEntities();
-            var i = 0;
             var users = db.Users.ToList();
             
             foreach (var t in users)
             {
-                var homePhonePresent = false;
-                var officePhone = false;
                 var currentRow = new TableRow();
-                i++;
-                currentRow.Cells.Add(new TableCell(new Paragraph(new Run(i.ToString(CultureInfo.InvariantCulture)))) { BorderThickness = new Thickness(1), BorderBrush = Brushes.Black });
 
-                currentRow.Cells.Add(new TableCell(new Paragraph(new Run(t.FirstName + " " + t.LastName))) { BorderThickness = new Thickness(0, 0, 1, 1), BorderBrush = Brushes.Black });
+                currentRow.Cells.Add(GetTableCell((_count++).ToString(CultureInfo.InvariantCulture), new Thickness(1)));
 
-                if (db.UserContacts.Any(v => v.User_Id == t.Id && v.ContactType.Id == (int) ContactCollection.Phone))
-                {
-                    var contacts = db.UserContacts.Where(u => u.User_Id == t.Id && u.ContactType.Id == (int) ContactCollection.Phone);
-                    foreach (var u in contacts)
-                    {
-                        var phone = db.Phones.FirstOrDefault(v => v.Id == u.Contact_Id);
-                        if (phone.PhoneType_Id == (int) PhoneCollection.Office)
-                        {
-                            officePhone = true;
-                            currentRow.Cells.Add(new TableCell(new Paragraph(new Run(phone.AreaCode + "-" + phone.Middle + "-" + phone.Last + " Ext. " + phone.Extension))) { BorderThickness = new Thickness(0, 0, 1, 1), BorderBrush = Brushes.Black });
-                        }
-                        else if (phone.PhoneType_Id == (int) PhoneCollection.Home)
-                        {
-                            homePhonePresent = true;
-                            currentRow.Cells.Add(new TableCell(new Paragraph(new Run(phone.AreaCode + "-" + phone.Middle + "-" + phone.Last))) { BorderThickness = new Thickness(0, 0, 1, 1), BorderBrush = Brushes.Black });
-                        }
-                    }
-                }
-                if (!officePhone)
-                {
-                    var PhoneButton = new Button { Content = "Add Office Phone", Uid = t.Id.ToString()};
-                    PhoneButton.Click += NewOfficePhoneClick;
-                    var detailsParagraph = new Paragraph { BorderThickness = new Thickness(0, 0, 1, 1), BorderBrush = Brushes.Black };
-                    detailsParagraph.Inlines.Add(PhoneButton);
-                    currentRow.Cells.Add(new TableCell(detailsParagraph));
-                }
-                if (!homePhonePresent)
-                {
-                    var PhoneButton = new Button { Content = "Add Home Phone", Uid = t.Id.ToString()};
-                    PhoneButton.Click += NewHomePhoneClick;
-                    var detailsParagraph = new Paragraph { BorderThickness = new Thickness(0, 0, 1, 1), BorderBrush = Brushes.Black };
-                    detailsParagraph.Inlines.Add(PhoneButton);
-                    currentRow.Cells.Add(new TableCell(detailsParagraph));
-                }
+                var displayName = t.FirstName + " " + t.LastName;
+                currentRow.Cells.Add(GetTableCell(displayName, new Thickness(0, 0, 1, 1)));
 
-
-                if (db.UserContacts.Any(v => v.User_Id == t.Id && v.ContactType.Id == (int) ContactCollection.Address))
+                var phones = from p in db.Phones
+                             join o in db.UserContacts on p.Id equals o.Contact_Id
+                             where o.contactType_Id == (int)ContactCollection.Phone && o.User_Id == t.Id
+                             select p;
+                if (phones.Any(p => p.PhoneType_Id == (int)PhoneCollection.Office))
                 {
-                    var contactId = db.UserContacts.FirstOrDefault(u => u.User_Id == t.Id && u.ContactType.Id == (int) ContactCollection.Address).Contact_Id;
-                    var address = db.Addresses.FirstOrDefault(w => w.Id == contactId);
-                    var state = db.States.FirstOrDefault(w => w.Id == address.State_Id);
-                    var addressString = address.HouseNumber + " " + address.Street + " " + address.ApartmentNumber + " " + address.City;
-                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(addressString))) { BorderThickness = new Thickness(0, 0, 1, 1), BorderBrush = Brushes.Black });
+                    var officePhone = phones.FirstOrDefault(p => p.PhoneType_Id == (int)PhoneCollection.Office);
+                    var displayOfficePhone = officePhone.AreaCode + "-" + officePhone.Middle + "-" + officePhone.Last + " Ext. " + officePhone.Extension;
+                    currentRow.Cells.Add(GetTableCell(displayOfficePhone, new Thickness(0, 0, 1, 1)));
                 }
                 else
                 {
-                    var addressButton = new Button { Content = "Add Address", Uid = t.Id.ToString() };
-                    addressButton.Click += NewAddressClick;
-                    var addressParagraph = new Paragraph { BorderThickness = new Thickness(0, 0, 1, 1), BorderBrush = Brushes.Black };
-                    addressParagraph.Inlines.Add(addressButton);
-                    currentRow.Cells.Add(new TableCell(addressParagraph));
+                    var button = GetButtonByType(ButtonType.OfficeButton, t.Id);
+                    currentRow.Cells.Add(GetTableCell(button, new Thickness(0, 0, 1, 1)));
+                }
 
+                if (phones.Any(p => p.PhoneType_Id == (int)PhoneCollection.Home))
+                {
+                    var homePhone = phones.FirstOrDefault(p => p.PhoneType_Id == (int)PhoneCollection.Home);
+                    var displayOfficePhone = homePhone.AreaCode + "-" + homePhone.Middle + "-" + homePhone.Last;
+                    currentRow.Cells.Add(GetTableCell(displayOfficePhone, new Thickness(0, 0, 1, 1)));
+                }
+                else
+                {
+                    var button = GetButtonByType(ButtonType.HomeButton, t.Id);
+                    currentRow.Cells.Add(GetTableCell(button, new Thickness(0, 0, 1, 1)));
+                }
+
+                if (db.UserContacts.Any(v => v.User_Id == t.Id && v.ContactType.Id == (int)ContactCollection.Address))
+                {
+                    var contactId = db.UserContacts.FirstOrDefault(u => u.User_Id == t.Id && u.ContactType.Id == (int)ContactCollection.Address).Contact_Id;
+                    var address = db.Addresses.FirstOrDefault(w => w.Id == contactId);
+                    var state = db.States.FirstOrDefault(w => w.Id == address.State_Id);
+                    var country = db.Countries.FirstOrDefault(w => w.Id == address.Country_Id);
+                    var addressString = address.HouseNumber + ", " + address.Street + " " + address.ApartmentNumber + ", " + address.City + ", " + state.Name + ", " + country.Name + ", " + address.Zipcode;
+
+                    currentRow.Cells.Add(GetTableCell(addressString, new Thickness(0, 0, 1, 1)));
+                }
+                else
+                {
+                    var button = GetButtonByType(ButtonType.AddressButton, t.Id);
+                    currentRow.Cells.Add(GetTableCell(button, new Thickness(0, 0, 1, 1)));
                 }
                 UserTable.Rows.Add(currentRow);
             }
@@ -96,28 +86,18 @@ namespace ElectronicRolodex.Desktop
             if (newUser.IsUserAdded)
             {
                 var currentRow = new TableRow();
-                currentRow.Cells.Add(new TableCell(new Paragraph(new Run(15.ToString(CultureInfo.InvariantCulture)))) { BorderThickness = new Thickness(1), BorderBrush = Brushes.Black });
 
-                currentRow.Cells.Add(new TableCell(new Paragraph(new Run(user.FirstName + " " + user.LastName))) { BorderThickness = new Thickness(0, 0, 1, 1), BorderBrush = Brushes.Black });
+                currentRow.Cells.Add(GetTableCell((_count++).ToString(CultureInfo.InvariantCulture), new Thickness(1)));
+                currentRow.Cells.Add(GetTableCell(user.FirstName + " " + user.LastName, new Thickness(1)));
+               
+                var button = GetButtonByType(ButtonType.OfficeButton, user.Id);
+                currentRow.Cells.Add(GetTableCell(button, new Thickness(0, 0, 1, 1)));
 
-                var PhoneButton = new Button { Content = "Add Office Phone", Uid = user.Id.ToString() };
-                PhoneButton.Click += NewOfficePhoneClick;
-                var detailsParagraph = new Paragraph { BorderThickness = new Thickness(0, 0, 1, 1), BorderBrush = Brushes.Black };
-                detailsParagraph.Inlines.Add(PhoneButton);
-                currentRow.Cells.Add(new TableCell(detailsParagraph));
+                button = GetButtonByType(ButtonType.HomeButton, user.Id);
+                currentRow.Cells.Add(GetTableCell(button, new Thickness(0, 0, 1, 1)));
 
-                var homePhoneButton = new Button { Content = "Add Home Phone", Uid = user.Id.ToString() };
-                homePhoneButton.Click += NewHomePhoneClick;
-                var detailsHomeParagraph = new Paragraph { BorderThickness = new Thickness(0, 0, 1, 1), BorderBrush = Brushes.Black };
-                detailsHomeParagraph.Inlines.Add(homePhoneButton);
-                currentRow.Cells.Add(new TableCell(detailsHomeParagraph));
-
-
-                var addressButton = new Button { Content = "Add Address", Uid = user.Id.ToString() };
-                addressButton.Click += NewAddressClick;
-                var addressParagraph = new Paragraph { BorderThickness = new Thickness(0, 0, 1, 1), BorderBrush = Brushes.Black };
-                addressParagraph.Inlines.Add(addressButton);
-                currentRow.Cells.Add(new TableCell(addressParagraph));
+                button = GetButtonByType(ButtonType.AddressButton, user.Id);
+                currentRow.Cells.Add(GetTableCell(button, new Thickness(0, 0, 1, 1)));
 
                 UserTable.Rows.Add(currentRow);
             }
@@ -125,35 +105,25 @@ namespace ElectronicRolodex.Desktop
 
         private void NewAddressClick(object sender, RoutedEventArgs e)
         {
-            var a = sender as Button;
-
-            var newAddress = new NewAddress(Guid.Parse(a.Uid));
+            var button = sender as Button;
+            var newAddress = new NewAddress(Guid.Parse(button.Uid));
             newAddress.ShowDialog();
-
             if (newAddress.IsAddressAdded)
             {
-                var inline = a.Parent as Inline;
-                var paragraph = inline.Parent as Paragraph;
-                var tableCell = paragraph.Parent as TableCell;
-                tableCell.Blocks.Clear();
-                var addressString = newAddress.Address.HouseNumber + " " + newAddress.Address.Street + " " + newAddress.Address.ApartmentNumber + " " + newAddress.Address.City;
-                tableCell.Blocks.Add(new Paragraph(new Run(addressString)) { BorderThickness = new Thickness(0, 0, 1, 1), BorderBrush = Brushes.Black });
+                var address = newAddress.Address.HouseNumber + " " + newAddress.Address.Street + " " + newAddress.Address.ApartmentNumber + " " + newAddress.Address.City;
+                ReplaceButtonWithText(button, address);
             }
         }
 
         private void NewHomePhoneClick(object sender, RoutedEventArgs e)
         {
-            var a = sender as Button;
-            var newPhone = new NewPhone(Guid.Parse(a.Uid), PhoneCollection.Home);
+            var button = sender as Button;
+            var newPhone = new NewPhone(Guid.Parse(button.Uid), PhoneCollection.Home);
             newPhone.ShowDialog();
             if (newPhone.IsPhoneAdded)
             {
                 var phone = newPhone.Phone.AreaCode + "-" + newPhone.Phone.Middle + "-" + newPhone.Phone.Last;
-                var inline = a.Parent as Inline;
-                var paragraph = inline.Parent as Paragraph;
-                var tableCell = paragraph.Parent as TableCell;
-                tableCell.Blocks.Clear();
-                tableCell.Blocks.Add(new Paragraph(new Run(phone)) { BorderThickness = new Thickness(0, 0, 1, 1), BorderBrush = Brushes.Black });
+                ReplaceButtonWithText(button, phone);
             }
         }
 
@@ -164,13 +134,68 @@ namespace ElectronicRolodex.Desktop
             newPhone.ShowDialog();
             if (newPhone.IsPhoneAdded)
             {
-                var phone = newPhone.Phone.AreaCode + "-" + newPhone.Phone.Middle + "-" + newPhone.Phone.Last;
                 var inline = a.Parent as Inline;
                 var paragraph = inline.Parent as Paragraph;
                 var tableCell = paragraph.Parent as TableCell;
                 tableCell.Blocks.Clear();
-                tableCell.Blocks.Add(new Paragraph(new Run(phone)) { BorderThickness = new Thickness(0, 0, 1, 1), BorderBrush = Brushes.Black });
+                var phone = newPhone.Phone.AreaCode + "-" + newPhone.Phone.Middle + "-" + newPhone.Phone.Last;
+                tableCell.Blocks.Add(new Paragraph(new Run(phone)));
             }
+        }
+
+        private TableCell GetTableCell(string input, Thickness thickness)
+        {
+            var paragraph = new Paragraph();
+            paragraph.Inlines.Add(new Run(input));
+            return new TableCell(paragraph)
+            {
+                BorderThickness = thickness,
+                BorderBrush = Brushes.Black
+            };
+        }
+
+        private TableCell GetTableCell(Button input, Thickness thickness)
+        {
+            var paragraph = new Paragraph();
+            paragraph.Inlines.Add(input);
+            return new TableCell(paragraph)
+            {
+                BorderThickness = thickness,
+                BorderBrush = Brushes.Black
+            };
+        }
+
+        private Button GetButtonByType(ButtonType type, Guid userId)
+        {
+            var button = new Button
+            {
+                Uid = userId.ToString()
+            };
+            switch (type)
+            {
+                case ButtonType.OfficeButton:
+                    button.Content = "Add Office Phone";
+                    button.Click += NewOfficePhoneClick;
+                    break;
+                case ButtonType.HomeButton:
+                    button.Content = "Add Home Phone";
+                    button.Click += NewHomePhoneClick;
+                    break;
+                case ButtonType.AddressButton:
+                    button.Content = "Add Address";
+                    button.Click += NewAddressClick;
+                    break;
+            }
+            return button;
+        }
+
+        private void ReplaceButtonWithText(Button button, string text)
+        {
+            var inline = button.Parent as Inline;
+            var paragraph = inline.Parent as Paragraph;
+            var tableCell = paragraph.Parent as TableCell;
+            tableCell.Blocks.Clear();
+            tableCell.Blocks.Add(new Paragraph(new Run(text)));
         }
     }
 }

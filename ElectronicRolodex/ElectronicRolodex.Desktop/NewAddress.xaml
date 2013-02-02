@@ -140,12 +140,5 @@
               VerticalAlignment="Top"
               Width="75" 
               Click="AddNewAddressClick"/>
-       
-      <Button Content="Back"
-              HorizontalAlignment="Left" 
-              Margin="280,370,0,0" 
-              VerticalAlignment="Top"
-              Width="75" 
-              Click="BackToListClick"/>
    </Grid>
 </Window>

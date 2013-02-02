@@ -13,6 +13,8 @@ namespace ElectronicRolodex.Desktop
     public partial class NewAddress
     {
         private readonly Guid _user;
+        private State _state;
+        private Country _country;
 
         public Address Address { get; set; }
         public bool IsAddressAdded { get; set; }
@@ -22,70 +24,66 @@ namespace ElectronicRolodex.Desktop
             _user = user;
             InitializeComponent();
             var db = new dbEntities();
-
             var countries = db.Countries.ToList();
             Country.ItemsSource = countries;
         }
 
         private void AddNewAddressClick(object sender, RoutedEventArgs e)
         {
-            var state = State.SelectedItem as State;
-            var country = Country.SelectedItem as Country;
+            _state = State.SelectedItem as State;
+            _country = Country.SelectedItem as Country;
             int intout;
             if (HouseNumber.Text == "" || StreetName.Text == "" || City.Text == "" || ZipCode.Text == "" ||
                 !int.TryParse(HouseNumber.Text, out intout) || !int.TryParse(ZipCode.Text, out intout) ||
                 !Regex.Match(StreetName.Text, @"^[a-zA-Z ]+$").Success || !Regex.Match(HouseNumber.Text, "^[a-zA-Z0-9]*$").Success ||
                 !Regex.Match(City.Text, @"^[a-zA-Z ]+$").Success)
             {
-                ErrorLabel.Content = "Please enter valid adddress.";
+                ErrorLabel.Content = Properties.Resources.EnterValidEmail;
             }
             else
             {
-                Address = new Address
-                {
-                    Id = Guid.NewGuid(),
-                    AddressType_Id = (int) AddressCollection.Home,
-                    HouseNumber =  int.Parse(HouseNumber.Text),
-                    Street = StreetName.Text,
-                    ApartmentNumber = AptOfficeRoom.Text,
-                    City = City.Text,
-                    State_Id = state.Id,
-                    Country_Id = country.Id,
-                    Zipcode = int.Parse(ZipCode.Text)
-                };
-                var db = new dbEntities();
-                db.Addresses.Add(Address);
-
-                var userContacts = new UserContact
-                    {
-                        Id = Guid.NewGuid(),
-                        User_Id = _user,
-                        contactType_Id = (int) ContactCollection.Address,
-                        Contact_Id = Address.Id
-                    };
-                db.UserContacts.Add(userContacts);
-                db.SaveChanges();
-                IsAddressAdded = true;
-                var message = new StringBuilder("Address, ");
-                message.Append(HouseNumber.Text);
-                message.Append(", ");
-                message.Append(StreetName.Text);
-                message.Append(", ");
-                message.Append(AptOfficeRoom.Text);
-                message.Append(", ");
-                message.Append(City.Text);
-                message.Append(", ");
-                message.Append(AptOfficeRoom.Text);
-                message.Append(", ");
-                message.Append(state.Name);
-                message.Append(", ");
-                message.Append(country.Name);
-                message.Append(", ");
-                message.Append(ZipCode.Text);
-                message.Append(" address is saved.");
-                MessageBox.Show(message.ToString());
+                IsAddressAdded = SaveAddress();
+                MessageBox.Show(BuildSuccessMessage());
                 Close();
             }
+        }
+
+        private bool SaveAddress()
+        {
+            Address = new Address
+            {
+                Id = Guid.NewGuid(),
+                AddressType_Id = (int)AddressCollection.Home,
+                HouseNumber = int.Parse(HouseNumber.Text),
+                Street = StreetName.Text,
+                ApartmentNumber = AptOfficeRoom.Text,
+                City = City.Text,
+                State_Id = _state.Id,
+                Country_Id = _country.Id,
+                Zipcode = int.Parse(ZipCode.Text)
+            };
+            var userContacts = new UserContact
+            {
+                Id = Guid.NewGuid(),
+                User_Id = _user,
+                contactType_Id = (int)ContactCollection.Address,
+                Contact_Id = Address.Id
+            };
+
+            try
+            {
+                using (var db = new dbEntities())
+                {
+                    db.Addresses.Add(Address);
+                    db.UserContacts.Add(userContacts);
+                    db.SaveChanges();
+                }
+                return true;
+            }
+            catch(Exception e)
+            {
+            }
+            return false;
         }
 
         private void UpdateStates(object sender, RoutedEventArgs e)
@@ -97,13 +95,26 @@ namespace ElectronicRolodex.Desktop
             State.SelectedIndex = 0;
         }
 
-        private void BackToListClick(object sender, RoutedEventArgs e)
+        private string BuildSuccessMessage()
         {
-            
-
-            var userList = new UserList();
-            userList.Show();
-            Close();
+            var message = new StringBuilder("Address, ");
+            message.Append(HouseNumber.Text);
+            message.Append(", ");
+            message.Append(StreetName.Text);
+            message.Append(", ");
+            message.Append(AptOfficeRoom.Text);
+            message.Append(", ");
+            message.Append(City.Text);
+            message.Append(", ");
+            message.Append(AptOfficeRoom.Text);
+            message.Append(", ");
+            message.Append(_state.Name);
+            message.Append(", ");
+            message.Append(_state.Name);
+            message.Append(", ");
+            message.Append(ZipCode.Text);
+            message.Append(" address is saved.");
+            return message.ToString();
         }
     }
 }

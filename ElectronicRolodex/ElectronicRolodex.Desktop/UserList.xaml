@@ -23,8 +23,8 @@
                <Table.Columns>
                   <TableColumn Width="100"/>
                   <TableColumn Width="200"/>
-                  <TableColumn Width="250"/>
-                  <TableColumn Width="250"/>
+                  <TableColumn Width="200"/>
+                  <TableColumn Width="200"/>
                   <TableColumn Width="500"/>
                     </Table.Columns>
                <TableRowGroup Name="UserTable">
