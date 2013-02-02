@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
 using ElectronicRolodex.Data;
+using System.Text;
 
 namespace ElectronicRolodex.Desktop
 {
@@ -65,8 +66,8 @@ namespace ElectronicRolodex.Desktop
                     var address = db.Addresses.FirstOrDefault(w => w.Id == contactId);
                     var state = db.States.FirstOrDefault(w => w.Id == address.State_Id);
                     var country = db.Countries.FirstOrDefault(w => w.Id == address.Country_Id);
-                    var addressString = address.HouseNumber + ", " + address.Street + " " + address.ApartmentNumber + ", " + address.City + ", " + state.Name + ", " + country.Name + ", " + address.Zipcode;
 
+                    var addressString = GetAddressString(address);
                     currentRow.Cells.Add(GetTableCell(addressString, new Thickness(0, 0, 1, 1)));
                 }
                 else
@@ -76,6 +77,24 @@ namespace ElectronicRolodex.Desktop
                 }
                 UserTable.Rows.Add(currentRow);
             }
+        }
+
+        private string GetAddressString(Address address)
+        {
+            var output = new StringBuilder(address.HouseNumber);
+            output.Append(", ");
+            output.Append(address.Street);
+            output.Append(" ");
+            output.Append(address.ApartmentNumber);
+            output.Append(", ");
+            output.Append(address.City);
+            output.Append(", ");
+            output.Append(address.State.Name);
+            output.Append(", ");
+            output.Append(address.Country.Name);
+            output.Append(", ");
+            output.Append(address.Zipcode);
+            return output.ToString();
         }
 
         private void NewUserClick(object sender, RoutedEventArgs e)
