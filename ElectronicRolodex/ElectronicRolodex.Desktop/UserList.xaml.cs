@@ -81,7 +81,8 @@ namespace ElectronicRolodex.Desktop
 
         private string GetAddressString(Address address)
         {
-            var output = new StringBuilder(address.HouseNumber);
+            var output = new StringBuilder();
+            output.Append(address.HouseNumber);
             output.Append(", ");
             output.Append(address.Street);
             output.Append(" ");
